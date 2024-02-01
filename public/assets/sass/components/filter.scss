@@ -1,0 +1,18 @@
+.filter__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter_label {
+  width: 240px;
+}
+
+.filter_select {
+  border-radius: 8px;
+  margin: 8px;
+  margin-left: -2px;
+  padding: 8px;
+  width: 220px;
+}
+

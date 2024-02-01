@@ -1,6 +1,12 @@
+import { NavLink } from "react-router-dom"
+
 const Navbar = () => {
   return (
-    <nav className="navbar">Navbar</nav>
+    <nav className="navbar">
+      <NavLink className='nav__link' to='/'>Inicio</NavLink>
+      <NavLink className='nav__link' to='/filter'>Filtrar / Búsqueda</NavLink>
+      <NavLink className='nav__link' to='/contribute'>Contribuir al sitio</NavLink>
+    </nav>
   )
 }
 

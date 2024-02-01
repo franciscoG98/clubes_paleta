@@ -1,0 +1,23 @@
+.contribute__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contribute__article {
+  padding: 16px;
+  width: 60%;
+}
+
+.article__link {
+  text-decoration: none;
+}
+
+.article__button {
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  padding: 12px;
+  margin: 20px auto;
+}

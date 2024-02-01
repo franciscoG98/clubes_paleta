@@ -20,26 +20,29 @@ npm run dev
 ```
 
 
-TODO:
+## TODO:
 
 - [ ] Quiero contribuir --> link al form
 - [ ] form para agregar o para corregir/agregar informacion
 - [ ] agregar el link de las que tienen pagina
 - [ ] responsive solo cards
 
-- [ ] routing (home - quiero contribuir - buqueda/filtros)
-- [ ] filtros (provincia - ciudad - tipo de cancha)
-- [ ] busqueda nombre de club (algo mas?)
-- [ ] actualizar el link de la hoja de calculo
+- [x] routing (home - quiero contribuir - buqueda/filtros)
+- [x] filtros (provincia - ciudad - tipo de cancha)
+- [ ] hacer que se aniden los filtros
 
-- [?] sacarle los 0 al codigo de area de los telefonos?
+- [?] busqueda nombre de club (algo mas?)
+- [x] actualizar el link de la hoja de calculo
+
+- [?] sacarle los 0 al codigo de area de los telefonos
 - [ ] en el form agregar un segundo numero de contacto
 - [?] imagenes
 - [ ] hacer circular el formulario
 
 - [x] vista tipo lista y tipo card
 - [?] abrir y que se vean detalles? que se mostraria?
-- [ ] 
-- [ ] 
+- [ ] SEO trafico etc...
+- [ ] cambiar logo de la pestaña
+- [ ] cutomize error page
 - [ ] 
 - [ ] 
