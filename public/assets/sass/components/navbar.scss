@@ -1,11 +1,13 @@
 .navbar {
-  background-color: #000;
-
-  // TODO
-  display: flex;
   align-items: center;
-  justify-content: center;
-
+  background-color: #000;
+  display: flex;
   height: 65px;
+  justify-content: space-around;
   width: 100vw;
+}
+
+.nav__link {
+  color: #fff;
+  text-decoration: none;
 }

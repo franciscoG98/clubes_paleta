@@ -4,7 +4,7 @@ import ClubList from './components/ClubList';
 import Navbar from './components/Navbar';
 import Toggle from './components/Toggle';
 
-const App = () => {
+const Home = () => {
 
   const [clubes, setClubes] = useState([]);
   const [list, setList] = useState(true);
@@ -13,7 +13,7 @@ const App = () => {
     getClubes()
   }, [])
 
-  const GOOGLESHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRoGQvg-sm9RpjQzAkBpoCJxd4XU6Oc0XOhsm_E9IXfx5sOYBshxRqr5ySgrsqhLz2pyzIanqWD3dc/pub?output=csv';
+  const GOOGLESHEETS_URL = import.meta.env.VITE_GOOGLE_SHEET_URL
 
   const getClubes = async () => {
 
@@ -33,23 +33,21 @@ const App = () => {
   }
 
   return (
-    <>
-      <main>
-        <Navbar />
-        <Toggle state={list} setState={setList} />
-        {
-          list ?
-            <ClubList clubes={clubes} />
-          :
-          <div className='clubes__container'>
-            {clubes.map(club => (
-              <ClubCard club={club} />
-            ))}
-          </div>
-        }
-      </main>
-    </>
+    <main>
+      <Navbar />
+      <Toggle state={list} setState={setList} />
+      {
+        list ?
+          <ClubList clubes={clubes} />
+        :
+        <div className='clubes__container'>
+          {clubes.map(club => (
+            <ClubCard club={club} />
+          ))}
+        </div>
+      }
+    </main>
   )
 }
 
-export default App
+export default Home
