@@ -22,24 +22,24 @@ npm run dev
 
 TODO:
 
-[ ] Quiero contribuir --> link al form
-[ ] form para agregar o para corregir/agregar informacion
-[ ] agregar el link de las que tienen pagina
-[ ] responsive solo cards
+- [ ] Quiero contribuir --> link al form
+- [ ] form para agregar o para corregir/agregar informacion
+- [ ] agregar el link de las que tienen pagina
+- [ ] responsive solo cards
 
-[ ] routing (home - quiero contribuir - buqueda/filtros)
-[ ] filtros (provincia - ciudad - tipo de cancha)
-[ ] busqueda nombre de club (algo mas?)
-[ ] actualizar el link de la hoja de calculo
+- [ ] routing (home - quiero contribuir - buqueda/filtros)
+- [ ] filtros (provincia - ciudad - tipo de cancha)
+- [ ] busqueda nombre de club (algo mas?)
+- [ ] actualizar el link de la hoja de calculo
 
-[?] sacarle los 0 al codigo de area de los telefonos?
-[ ] en el form agregar un segundo numero de contacto
-[?] imagenes
-[ ] hacer circular el formulario
+- [?] sacarle los 0 al codigo de area de los telefonos?
+- [ ] en el form agregar un segundo numero de contacto
+- [?] imagenes
+- [ ] hacer circular el formulario
 
-[x] vista tipo lista y tipo card
-[?] abrir y que se vean detalles? que se mostraria?
-[ ] 
-[ ] 
-[ ] 
-[ ] 
+- [x] vista tipo lista y tipo card
+- [?] abrir y que se vean detalles? que se mostraria?
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
