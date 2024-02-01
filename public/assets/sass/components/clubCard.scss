@@ -1,0 +1,31 @@
+.club__card {
+  border: 1px solid #666;
+  border-radius: 12px;
+  height: 300px;
+  padding: 12px;
+  margin: auto;
+  width: 200px;
+}
+
+.club__title {
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 20px;
+  height: 4em;
+  justify-content: center;
+  text-align: center;
+}
+
+.club__localidad {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.club__direccion, .club__tipo, .club__cotact {
+  display: block;
+  font-weight: 500;
+  margin-block: 8px;
+  font-size: 14px;
+}

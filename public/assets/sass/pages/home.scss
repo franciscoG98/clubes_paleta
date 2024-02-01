@@ -1,0 +1,21 @@
+.clubes__container {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, auto);
+  margin: 32px auto;
+  max-width: 80%;
+  overflow: hidden;
+}
+
+// responsive
+@media screen and (max-width: 1024px) {
+  .clubes__container {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .clubes__container {
+    grid-template-columns: repeat(1, auto);
+  }
+}
