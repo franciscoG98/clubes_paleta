@@ -2,9 +2,10 @@
   align-items: center;
   background-color: #000;
   display: flex;
+  flex: 1;
   height: 65px;
   justify-content: space-around;
-  width: 100vw;
+  // width: 100vw;
 }
 
 .nav__link {

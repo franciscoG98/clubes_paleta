@@ -1,7 +1,7 @@
-// eslint-disable-next-line react/prop-types
+/* eslint-disable react/prop-types */
 const ClubCard = ({ club }) => {
 
-  const { provincia, ciudad, clubName, direccion, tipo, contacto } = club;
+  const { provincia, ciudad, clubName, direccion, tipo, contacto, contacto2 } = club;
 
   return clubName ?
     (
@@ -9,26 +9,27 @@ const ClubCard = ({ club }) => {
         <h2 className="club__title">{clubName}</h2>
         <h3 className="club__localidad">{ciudad + ", " + provincia}</h3>
         <span className="club__direccion">Direccion: {direccion}</span>
-        <span className="club__tipo">Tipo de Cancha: {tipo}</span>
-        {contacto == '1111111111' ? (
-          "Telefono: -"
-        ) : (
+        {
+          tipo ?
+          (
+            <span className="club__tipo">Tipo de Cancha: {tipo}</span>
+          )
+          : ''
+        }
+        {contacto ? (
           <span className="club__cotact">
-            Telefono:{" "}
-            {
-              !contacto.includes('/') ?
-                <a href={`tel:+549${contacto}`}>{contacto}</a>
-              :
-                (
-                  contacto.split('/').map( contact => (
-                    <>
-                      <a href={`tel:+549${contact}`}>{contact}</a>
-                      <br />
-                    </>
-                  ))
-                )
-            }
+            Telefono:&nbsp;
+            <a href={`tel:+549${contacto}`}>{contacto}</a>
           </span>
+        ) : (
+          ""
+        )}
+        {contacto2 ? (
+          <span className="club__cotact">
+            {contacto2}
+          </span>
+        ) : (
+          ""
         )}
       </div>
     )
