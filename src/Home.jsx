@@ -42,7 +42,7 @@ const Home = () => {
         :
         <div className='clubes__container'>
           {clubes.map(club => (
-            <ClubCard club={club} />
+            <ClubCard key={club.clubName} club={club} />
           ))}
         </div>
       }
