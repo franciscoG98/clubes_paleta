@@ -11,13 +11,11 @@
 }
 
 .article__link {
+  display: flex;
+  margin: 20px auto;
   text-decoration: none;
 }
 
-.article__button {
-  border-radius: 8px;
-  border: none;
-  display: flex;
-  padding: 12px;
-  margin: 20px auto;
+.article__link:hover {
+  text-decoration: underline;
 }

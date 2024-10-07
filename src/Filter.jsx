@@ -51,64 +51,65 @@ const Filter = () => {
   };
 
   return (
-    <main className='filter__container'>
+    <>
       <Navbar />
+      <main className='filter__container'>
+        <h1>Filtrar</h1>
 
-      <h1>Filtrar</h1>
+        <button onClick={handleResetFilters}>
+          Borrar Filtros
+        </button>
 
-      <button onClick={handleResetFilters}>
-        Borrar Filtros
-      </button>
+        {/* provincia */}
+        <label
+          className='filter_label'
+          htmlFor="provinciaFilter"
+        >Provincia:
+          <select
+            className='filter_select'
+            id="provinciaFilter"
+            value={provinciaFilter}
+            onChange={handleProvinciaChange}
+          >
+            <option value="" hidden>Seleccione una provincia</option> 
+            {provinciaOptions.map((provincia, index) => (
+              <option className='filter_option' key={index} value={provincia}>{provincia}</option>
+            ))}
+          </select>
+        </label>
 
-      {/* provincia */}
-      <label
-        className='filter_label'
-        htmlFor="provinciaFilter"
-      >Provincia:
-        <select
-          className='filter_select'
-          id="provinciaFilter"
-          value={provinciaFilter}
-          onChange={handleProvinciaChange}
-        >
-          <option value="" hidden>Seleccione una provincia</option> 
-          {provinciaOptions.map((provincia, index) => (
-            <option className='filter_option' key={index} value={provincia}>{provincia}</option>
-          ))}
-        </select>
-      </label>
+        {/* tipo de cancha */}
+        <label
+          className='filter_label'
+          htmlFor="tipoCanchaFilter"
+        >Tipo de Cancha:
+          <select
+            className='filter_select'
+            id="tipoCanchaFilter"
+            value={tipoCanchaFilter}
+            onChange={handleTipoCanchaChange}
+          >
+            <option value="" hidden>Seleccione un tipo de cancha</option>
+            <option className='filter_option' value={"Trinquete"}>{"Trinquete"}</option>
+            <option className='filter_option' value={"Frontón"}>{"Frontón"}</option>
+          </select>
+        </label>
 
-      {/* tipo de cancha */}
-      <label
-        className='filter_label'
-        htmlFor="tipoCanchaFilter"
-      >Tipo de Cancha:
-        <select
-          className='filter_select'
-          id="tipoCanchaFilter"
-          value={tipoCanchaFilter}
-          onChange={handleTipoCanchaChange}
-        >
-          <option value="" hidden>Seleccione un tipo de cancha</option>
-          <option className='filter_option' value={"Trinquete"}>{"Trinquete"}</option>
-          <option className='filter_option' value={"Frontón"}>{"Frontón"}</option>
-        </select>
-      </label>
+        <div className='clubes__container'>
+          {
+            filteredClubes.length > 0
+            ? (
+              filteredClubes.map(club => (
+                <ClubCard key={club.clubName} club={club} />
+              ))
+            ) : (
+              <span>Lo siento, no encontramos la combinacion de cancha y lugar que esta buscando</span>
+            )
+          }
+        </div>
 
-      <div className='clubes__container'>
-        {
-          filteredClubes.length > 0
-          ? (
-            filteredClubes.map(club => (
-              <ClubCard key={club.clubName} club={club} />
-            ))
-          ) : (
-            <span>Lo siento, no encontramos la combinacion de cancha y lugar que esta buscando</span>
-          )
-        }
-      </div>
-
-    </main>
+      </main>
+    </>
   )
 }
 

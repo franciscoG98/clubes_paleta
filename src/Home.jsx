@@ -32,11 +32,11 @@ const Home = () => {
   return (
     <main>
       <Navbar />
-        <div className='clubes__container'>
-          {clubes.map(club => (
-            <ClubCard key={club.clubName} club={club} />
-          ))}
-        </div>
+      <div className='clubes__container'>
+        {clubes.map(club => (
+          <ClubCard key={club.clubName} club={club} />
+        ))}
+      </div>
     </main>
   )
 }
