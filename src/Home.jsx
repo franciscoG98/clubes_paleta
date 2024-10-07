@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react'
 import ClubCard from './components/ClubCard';
-import ClubList from './components/ClubList';
 import Navbar from './components/Navbar';
-import Toggle from './components/Toggle';
 
 const Home = () => {
 
   const [clubes, setClubes] = useState([]);
-  const [list, setList] = useState(true);
 
   useEffect(() => {
     getClubes()
@@ -24,9 +21,9 @@ const Home = () => {
       .split('\n')
       .slice(1)
       .map(row => {
-        const [provincia, ciudad, clubName, direccion, tipo, contacto] = row.split(',');
+        const [provincia, ciudad, clubName, direccion, tipo, contacto, contacto2] = row.split(',');
 
-        return {provincia, ciudad, clubName, direccion, tipo, contacto};
+        return {provincia, ciudad, clubName, direccion, tipo, contacto, contacto2};
       })
 
     setClubes(clubes)
@@ -35,17 +32,11 @@ const Home = () => {
   return (
     <main>
       <Navbar />
-      <Toggle state={list} setState={setList} />
-      {
-        list ?
-          <ClubList clubes={clubes} />
-        :
         <div className='clubes__container'>
           {clubes.map(club => (
             <ClubCard key={club.clubName} club={club} />
           ))}
         </div>
-      }
     </main>
   )
 }

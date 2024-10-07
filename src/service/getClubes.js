@@ -9,9 +9,9 @@ const getClubes = async () => {
     .split('\n')
     .slice(1)
     .map(row => {
-      const [provincia, ciudad, clubName, direccion, tipo, contacto] = row.split(',');
+      const [provincia, ciudad, clubName, direccion, tipo, contacto, contacto2] = row.split(',');
 
-      return {provincia, ciudad, clubName, direccion, tipo, contacto};
+      return {provincia, ciudad, clubName, direccion, tipo, contacto, contacto2};
     })
 
   return clubes;
