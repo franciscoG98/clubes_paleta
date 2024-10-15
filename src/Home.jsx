@@ -12,8 +12,6 @@ const Home = () => {
 
   const GOOGLESHEETS_URL = import.meta.env.VITE_GOOGLE_API_KEY
 
-  console.log('api?', GOOGLESHEETS_URL);
-
   const getClubes = async () => {
 
     const csv = await fetch(GOOGLESHEETS_URL)
@@ -35,8 +33,8 @@ const Home = () => {
     <main>
       <Navbar />
       <div className='clubes__container'>
-        {clubes.map(club => (
-          <ClubCard key={club.clubName} club={club} />
+        {clubes.map((club, idx) => (
+          <ClubCard key={idx} club={club} />
         ))}
       </div>
     </main>

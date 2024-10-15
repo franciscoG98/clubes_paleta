@@ -5,44 +5,35 @@ El objetivo de este proyecto es que todos los pelotaris argentinos puedan saber 
 La idea es que circule un formulario de google por la comunidad pelotari, a partir de las respuestas aceptarlas, modificarlas y pasarlas a una hoja de calculo definitiva. Esta hoja de calculo recopila provincia, ciudad, club, tipo de cancha, direccion y contacto.
 Con esta informacion en la pagina mostraria los clubes segun la ciudad, y demas información.
 
+Ver online [AQUI](https://clubes-paleta.vercel.app/).
+
 ## Entorno
 
 Este proyecto fue realizado con **node v20.9.0 - npm 10.1.0**, React.js, Sass y Google Sheets como "bd".
 
 ## Scripts
-Install dependencies
+
+```bash
+npm i           # install dependencies
+npm run dev     # run it
 ```
-npm install
-```
-Run the code
-```
-npm run dev
-```
+
+Go see the .env.example to replicate the project in your computer
 
 
 ## TODO:
 
-- [ ] Quiero contribuir --> link al form
-- [ ] form para agregar o para corregir/agregar informacion
-- [ ] agregar el link de las que tienen pagina
-- [ ] responsive solo cards
-
-- [x] routing (home - quiero contribuir - buqueda/filtros)
-- [x] filtros (provincia - ciudad - tipo de cancha)
-- [ ] hacer que se aniden los filtros
-
+Definir:
 - [?] busqueda nombre de club (algo mas?)
-- [x] actualizar el link de la hoja de calculo
-
 - [?] sacarle los 0 al codigo de area de los telefonos
-- [ ] en el form agregar un segundo numero de contacto
+- [?] en el form agregar un segundo numero de contacto
 - [?] imagenes
-- [ ] hacer circular el formulario
-
-- [x] vista tipo lista y tipo card
 - [?] abrir y que se vean detalles? que se mostraria?
+
+Pendiente:
+- [ ] agregar el link de las que tienen pagina
+- [ ] responsive
+- [ ] hacer circular el formulario
 - [ ] SEO trafico etc...
 - [ ] cambiar logo de la pestaña
-- [ ] cutomize error page
-- [ ] 
 - [ ] 
