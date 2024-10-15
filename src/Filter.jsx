@@ -99,8 +99,8 @@ const Filter = () => {
           {
             filteredClubes.length > 0
             ? (
-              filteredClubes.map(club => (
-                <ClubCard key={club.clubName} club={club} />
+              filteredClubes.map((club, idx) => (
+                <ClubCard key={idx} club={club} />
               ))
             ) : (
               <span>Lo siento, no encontramos la combinacion de cancha y lugar que esta buscando</span>
