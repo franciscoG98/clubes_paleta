@@ -12,6 +12,8 @@ const Home = () => {
 
   const GOOGLESHEETS_URL = import.meta.env.VITE_GOOGLE_SHEET_URL
 
+  console.log('api?', GOOGLESHEETS_URL);
+
   const getClubes = async () => {
 
     const csv = await fetch(GOOGLESHEETS_URL)
