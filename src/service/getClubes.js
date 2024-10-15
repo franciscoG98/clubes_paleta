@@ -1,4 +1,4 @@
-const GOOGLESHEETS_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
+const GOOGLESHEETS_URL = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const getClubes = async () => {
 
