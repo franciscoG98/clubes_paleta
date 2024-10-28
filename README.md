@@ -24,16 +24,22 @@ Go see the .env.example to replicate the project in your computer
 ## TODO:
 
 Definir:
-- [?] busqueda nombre de club (algo mas?)
-- [?] sacarle los 0 al codigo de area de los telefonos
+- [?] busqueda
+    - nombre de club
+    - ciudad tmb
+- [x] sacarle los 0 al codigo de area de los telefonos
+
+- [?] abrir y que se vean detalles? (te parece?) que se mostraria?
 - [?] en el form agregar un segundo numero de contacto
-- [?] imagenes
-- [?] abrir y que se vean detalles? que se mostraria?
 
 Pendiente:
+- [ ] imagenes
 - [ ] agregar el link de las que tienen pagina
-- [ ] responsive
-- [ ] hacer circular el formulario
+- [+/-] responsive
+- [ ] hacer circular el formulario / llamar
 - [ ] SEO trafico etc...
-- [ ] cambiar logo de la pestaña
+- [ ] favicon - cambiar logo de la pestaña
+- [ ] migrar a next
+- [ ] club racing de chivilcoy
+- [ ] loader
 - [ ] 
