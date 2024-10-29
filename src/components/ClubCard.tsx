@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Club from '@/types/club';
 
 const ClubCard = ({
   provincia,
@@ -10,7 +11,7 @@ const ClubCard = ({
   tipo,
   contacto,
   contacto2,
-}) => {
+}: Club) => {
   return (
     // @fix: sizes
     // @fix: rounded
