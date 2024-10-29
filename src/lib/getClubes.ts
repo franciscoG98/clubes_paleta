@@ -5,8 +5,6 @@ const GOOGLESHEETS_URL = process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string;
 const getClubes = async (): Promise<Club[]> => {
   const csv = await fetch(GOOGLESHEETS_URL).then((res) => res.text());
 
-  console.log('key', GOOGLESHEETS_URL);
-
   const clubes = csv
     .split('\n')
     .slice(1)
