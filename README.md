@@ -9,16 +9,30 @@ Ver online [AQUI](https://clubes-paleta.vercel.app/).
 
 ## Entorno
 
-Este proyecto fue realizado con **node v20.9.0 - npm 10.1.0**, React.js, Sass y Google Sheets como "bd".
+Este proyecto fue realizado con **Next 15**, React.js, Sass y Google Sheets como "bd", deployado en Vercel.
 
 ## Scripts
-
+(node version ^20)
 ```bash
 npm i           # install dependencies
 npm run dev     # run it
 ```
 
-Go see the .env.example to replicate the project in your computer
+Ir a [http://localhost:3000](http://localhost:3000) en el navegador para ver el resultado.
+
+Esta el ejemplo
+```
+.env.example 
+```
+de como guardar la variable de entorno para google sheets
+
+## Update Google Sheets
+
+- archivo
+- compartir
+- publicar en la web
+- seleccionar hoja
+- seleccionar .csv
 
 
 ## TODO:
@@ -27,19 +41,11 @@ Definir:
 - [?] busqueda
     - nombre de club
     - ciudad tmb
-- [x] sacarle los 0 al codigo de area de los telefonos
-
-- [?] abrir y que se vean detalles? (te parece?) que se mostraria?
-- [?] en el form agregar un segundo numero de contacto
 
 Pendiente:
 - [ ] imagenes
 - [ ] agregar el link de las que tienen pagina
-- [+/-] responsive
 - [ ] hacer circular el formulario / llamar
 - [ ] SEO trafico etc...
-- [ ] favicon - cambiar logo de la pestaña
-- [ ] migrar a next
-- [ ] club racing de chivilcoy
-- [ ] loader
+- [ ] loader en buscar clubes no error de una
 - [ ] 
