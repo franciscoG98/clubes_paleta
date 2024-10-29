@@ -27,11 +27,15 @@ const getClubes = async (): Promise<Club[]> => {
         direccion,
         mapsLink,
         tipo,
-        contacto,
-        contacto2,
+        contacto: Number(contacto),
+        contacto2: contacto2
+          ? isNaN(Number(contacto2))
+            ? contacto2
+            : Number(contacto2)
+          : undefined,
       };
     });
-  // @fix: this ?
+
   return clubes;
 };
 
