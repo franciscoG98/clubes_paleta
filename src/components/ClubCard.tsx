@@ -68,7 +68,7 @@ const ClubCard = ({
             </a>
           </span>
         )}
-        {contacto2 && (
+        {contacto2 !== 0 && (
           <span className="text-blue-600 underline hover:no-underline">
             {contacto2}
           </span>
