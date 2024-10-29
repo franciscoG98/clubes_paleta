@@ -10,7 +10,7 @@ const page = () => {
       <Link
         className="my-4 text-blue-600 underline hover:no-underline"
         href="https://forms.gle/utEZdGne4ZtYq9dC7"
-        external
+        passHref={true}
       >
         Formulario para sumar la cancha
       </Link>
