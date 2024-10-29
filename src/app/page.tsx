@@ -4,7 +4,7 @@ import getClubes from '@/lib/getClubes';
 import { useEffect, useState } from 'react';
 import Club from '@/types/club';
 import ClubCard from '@/components/ClubCard';
-// import Image from "next/image";
+import Spinner from '@/components/Spinner';
 
 export default function Home() {
   const [clubes, setClubes] = useState<Club[]>([]);
@@ -16,7 +16,7 @@ export default function Home() {
   }, []);
 
   if (clubes.length < 1) {
-    return <span>...cargando</span>;
+    return <Spinner />;
   }
 
   return (

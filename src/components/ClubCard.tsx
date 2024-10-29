@@ -19,7 +19,7 @@ const ClubCard = ({
         aria-hidden
         src="/cancha_default.webp"
         alt="Default logo para las canchas sin foto"
-        className="h-[320px] w-full rounded-t-md sm:h-[203px]"
+        className="h-[203px] w-full rounded-t-md sm:h-[240px]"
         width={320}
         height={203}
         priority
@@ -34,7 +34,7 @@ const ClubCard = ({
       <div className="mx-2 my-4 flex items-center justify-between">
         <h3 className="text-xl font-semibold">{clubName}</h3>
         {tipo && (
-          <span className="rounded-full bg-blue-600 px-1 py-0.5 text-xs text-background">
+          <span className="rounded-full bg-blue-600 px-1 py-0.5 text-xs font-semibold text-background">
             {tipo}
           </span>
         )}

@@ -26,25 +26,26 @@ Esta el ejemplo
 ```
 de como guardar la variable de entorno para google sheets
 
+## Update Google Sheets
+
+- archivo
+- compartir
+- publicar en la web
+- seleccionar hoja
+- seleccionar .csv
+
+
 ## TODO:
 
 Definir:
 - [?] busqueda
     - nombre de club
     - ciudad tmb
-- [x] sacarle los 0 al codigo de area de los telefonos
-
-- [?] abrir y que se vean detalles? (te parece?) que se mostraria?
-- [?] en el form agregar un segundo numero de contacto
 
 Pendiente:
 - [ ] imagenes
 - [ ] agregar el link de las que tienen pagina
-- [+/-] responsive
 - [ ] hacer circular el formulario / llamar
 - [ ] SEO trafico etc...
-- [ ] favicon - cambiar logo de la pestaña
-- [ ] migrar a next
-- [ ] club racing de chivilcoy
-- [ ] loader
+- [ ] loader en buscar clubes no error de una
 - [ ] 

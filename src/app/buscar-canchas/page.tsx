@@ -63,7 +63,7 @@ export default function Filter() {
         <label className="" htmlFor="provinciaFilter">
           Provincia:
           <select
-            className="w-full rounded-md border border-foreground bg-background p-2"
+            className="w-full rounded-md border border-foreground bg-white p-2"
             id="provinciaFilter"
             value={provinciaFilter}
             onChange={handleProvinciaChange}
@@ -83,7 +83,7 @@ export default function Filter() {
         <label className="" htmlFor="tipoCanchaFilter">
           Tipo de Cancha:
           <select
-            className="w-full rounded-md border border-foreground bg-background p-2"
+            className="w-full rounded-md border border-foreground bg-white p-2"
             id="tipoCanchaFilter"
             value={tipoCanchaFilter}
             onChange={handleTipoCanchaChange}
