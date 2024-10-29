@@ -47,7 +47,7 @@ const ClubCard = ({
         {mapsLink !== '' && mapsLink !== 'H' && (
           <Link
             className="text-blue-600 underline hover:no-underline"
-            href={mapsLink}
+            href={mapsLink || ''}
             passHref={true}
           >
             Ver en Google Maps
