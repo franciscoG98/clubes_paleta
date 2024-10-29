@@ -32,11 +32,11 @@ export default function Filter() {
     fetchData();
   }, []);
 
-  const handleProvinciaChange = (e) => {
+  const handleProvinciaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setProvinciaFilter(e.target.value);
   };
 
-  const handleTipoCanchaChange = (e) => {
+  const handleTipoCanchaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTipoCanchaFilter(e.target.value);
   };
 
