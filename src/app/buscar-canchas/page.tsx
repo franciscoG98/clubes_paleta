@@ -3,13 +3,14 @@
 import { useEffect, useState } from 'react';
 import getClubes from '@/lib/getClubes';
 import ClubCard from '@/components/ClubCard';
+import Club from '@/types/club';
 
 export default function Filter() {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState<Club[]>([]);
 
   const [provinciaFilter, setProvinciaFilter] = useState('');
   const [tipoCanchaFilter, setTipoCanchaFilter] = useState('');
-  const [provinciaOptions, setProvinciaOptions] = useState([]);
+  const [provinciaOptions, setProvinciaOptions] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
