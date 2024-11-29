@@ -102,7 +102,7 @@ export default function Filter() {
         </label>
 
         <button
-          className="flex flex-wrap justify-center whitespace-nowrap rounded-md border border-foreground bg-foreground px-3 py-2 font-semibold text-background hover:bg-background hover:text-foreground"
+          className="flex flex-wrap justify-center whitespace-nowrap rounded-md border border-foreground bg-foreground px-3 py-1.5 font-semibold text-background hover:bg-background hover:text-foreground"
           onClick={handleResetFilters}
         >
           Borrar Filtros
