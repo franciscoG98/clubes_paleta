@@ -1,16 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import getClubes from '@/lib/getClubes';
+import { getClubes } from '@/lib/getClubes';
 import ClubCard from '@/components/ClubCard';
-import Club from '@/types/club';
+import { Club } from '@/types/club';
+
+// @fix: combine with new select component
 
 export default function Filter() {
   const [result, setResult] = useState<Club[]>([]);
 
   const [provinciaFilter, setProvinciaFilter] = useState('');
-  const [tipoCanchaFilter, setTipoCanchaFilter] = useState('');
+  const [tipoCanchaFilter, setTipoCanchaFilter] = useState<string[]>([]);
   const [provinciaOptions, setProvinciaOptions] = useState<string[]>([]);
+
+  // @fix: loading state when lookin diferent of first load
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,15 +40,19 @@ export default function Filter() {
     setProvinciaFilter(e.target.value);
   };
 
-  const handleTipoCanchaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTipoCanchaFilter(e.target.value);
+  const handleTipoCanchaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+
+    setTipoCanchaFilter((prev) =>
+      checked ? [...prev, value] : prev.filter((tipo) => tipo !== value),
+    );
   };
 
   const filteredClubes = result.filter((club) => {
     const provinciaMatches =
       provinciaFilter === '' || club.provincia === provinciaFilter;
     const tipoCanchaMatches =
-      tipoCanchaFilter === '' || club.tipo === tipoCanchaFilter;
+      tipoCanchaFilter.length === 0 || tipoCanchaFilter.includes(club.tipo);
 
     return provinciaMatches && tipoCanchaMatches;
   });
@@ -64,7 +72,7 @@ export default function Filter() {
         <label className="" htmlFor="provinciaFilter">
           Provincia:
           <select
-            className="w-full rounded-md border border-foreground bg-white p-2"
+            className="w-full rounded-md border border-slate-400 bg-white p-2"
             id="provinciaFilter"
             value={provinciaFilter}
             onChange={handleProvinciaChange}
@@ -81,28 +89,46 @@ export default function Filter() {
         </label>
 
         {/* tipo de cancha */}
-        <label className="" htmlFor="tipoCanchaFilter">
+        <label className="mb-2 block">
           Tipo de Cancha:
-          <select
-            className="w-full rounded-md border border-foreground bg-white p-2"
-            id="tipoCanchaFilter"
-            value={tipoCanchaFilter}
-            onChange={handleTipoCanchaChange}
-          >
-            <option value="" hidden>
-              Seleccione un tipo de cancha
-            </option>
-            <option className="" value={'Trinquete'}>
-              {'Trinquete'}
-            </option>
-            <option className="" value={'Frontón'}>
-              {'Frontón'}
-            </option>
-          </select>
+          <div className="mt-2 flex gap-2">
+            <label className="flex items-center gap-2">
+              <input
+                className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
+                type="checkbox"
+                value="Trinquete"
+                checked={tipoCanchaFilter.includes('Trinquete')}
+                onChange={handleTipoCanchaChange}
+              />
+              Trinquete
+            </label>
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
+                value="Frontón"
+                checked={tipoCanchaFilter.includes('Frontón')}
+                onChange={handleTipoCanchaChange}
+              />
+              Frontón
+            </label>
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
+                value="Otro"
+                checked={tipoCanchaFilter.includes('Otro')}
+                onChange={handleTipoCanchaChange}
+              />
+              Otro
+            </label>
+          </div>
         </label>
 
         <button
-          className="flex flex-wrap justify-center whitespace-nowrap rounded-md border border-foreground bg-foreground px-3 py-1.5 font-semibold text-background hover:bg-background hover:text-foreground"
+          className="mb-2 flex flex-wrap justify-center whitespace-nowrap rounded-md border border-none bg-black px-3 py-1.5 font-semibold text-white hover:bg-green-400 hover:text-black"
           onClick={handleResetFilters}
         >
           Borrar Filtros

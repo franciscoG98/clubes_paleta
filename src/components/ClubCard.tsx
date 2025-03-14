@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Club from '@/types/club';
+import { Club } from '@/types/club';
 
 const ClubCard = ({
   provincia,
@@ -9,37 +9,48 @@ const ClubCard = ({
   direccion,
   mapsLink,
   tipo,
+  image,
   contacto,
   contacto2,
 }: Club) => {
   return (
-    // @fix: sizes
+    // @fix: sizes (height)
     // @fix: rounded
-    <div className="h-[520px] w-[320px] rounded-lg border border-slate-500">
-      <Image
-        aria-hidden
-        src="/cancha_default.webp"
-        alt="Default logo para las canchas sin foto"
-        className="h-[203px] w-full rounded-t-md sm:h-[240px]"
-        width={320}
-        height={203}
-        priority
-      />
+    <div className="h-[520px] w-[320px] rounded-xl border border-slate-500 bg-white">
+      {image && image.includes('.') ? (
+        <Image
+          aria-hidden
+          src={`${process.env.serverURI}/uploads/${image}`}
+          alt={`Cancha de ${clubName}, ${ciudad}`}
+          className="h-[203px] w-full rounded-t-xl sm:h-[240px]"
+          width={320}
+          height={203}
+          priority
+        />
+      ) : (
+        <Image
+          aria-hidden
+          src="/cancha_default.webp"
+          alt="Default logo para las canchas sin foto"
+          className="h-[203px] w-full rounded-t-xl sm:h-[240px]"
+          width={320}
+          height={203}
+          priority
+        />
+      )}
 
       {/* header provincia y ciudad */}
-      <p className="m-2 flex flex-col font-semibold">
-        <span className="text-center text-2xl font-bold">{provincia}</span>
-        <span>{ciudad}</span>
-      </p>
-      {/* card body */}
-      <div className="mx-2 my-4 flex items-center justify-between">
-        <h3 className="text-xl font-semibold">{clubName}</h3>
-        {tipo && (
-          <span className="rounded-full bg-blue-600 px-1 py-0.5 text-xs font-semibold text-background">
-            {tipo}
-          </span>
-        )}
-      </div>
+      <span className="m-4 flex text-center text-2xl font-bold">
+        {ciudad}, {provincia}
+      </span>
+
+      <span className="m-4 flex text-center text-2xl font-bold">
+        {clubName}
+      </span>
+
+      <span className="m-2 rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
+        {tipo}
+      </span>
 
       {/* location */}
       <div className="m-2">

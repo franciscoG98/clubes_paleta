@@ -18,6 +18,9 @@ npm i           # install dependencies
 npm run dev     # run it
 ```
 
+next 15
+node express psql sequelize
+
 Ir a [http://localhost:3000](http://localhost:3000) en el navegador para ver el resultado.
 
 Esta el ejemplo
@@ -48,4 +51,20 @@ Pendiente:
 - [ ] hacer circular el formulario / llamar
 - [ ] SEO trafico etc...
 - [ ] loader en buscar clubes no error de una
+- [ ] 
+
+NEW
+- [ ] refactor club car 
+    - accept buttons accept decline for admin panel
+    - optional-default image
+- [ ] accept/decline new canchas
+- [ ] handle images upload
+    - poder subir imagenes
+    - restringir el tamaño o ratio de la imagen
+    - dar la opcion de recortarla
+    - preview de la imagen
+- [ ] cartel de cancha enviada correctamente
+- [ ] link a cafecito
+- [ ] mapa de canchas (como???????)
+- [ ] ciudades y provincias de canchas como selects predefinidos (para subir cancha y para filtrarlas)
 - [ ] 

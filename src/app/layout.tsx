@@ -60,6 +60,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
+        {/* green gradient */}
+        {/* <div className="absolute left-0 top-0 -z-10 h-3/4 w-full bg-gradient-to-b from-white to-green-400"></div>
+        <div className="absolute left-0 top-3/4 -z-10 h-1/4 w-full bg-gradient-to-b from-green-400 to-white"></div> */}
+        {/* green gradient */}
         {children}
       </body>
     </html>
