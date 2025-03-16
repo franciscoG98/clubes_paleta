@@ -72,13 +72,13 @@ export const Slider = () => {
           0: {
             slidesPerView: 1,
           },
-          576: {
+          768: {
             slidesPerView: 2,
           },
           950: {
             slidesPerView: 3,
           },
-          1250: {
+          1400: {
             slidesPerView: 4,
           },
         }}

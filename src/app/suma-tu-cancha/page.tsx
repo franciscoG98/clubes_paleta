@@ -4,33 +4,29 @@ import { useState } from 'react';
 import { createPendingCancha } from '@/lib/getClubes';
 import SelectProvince from '@/components/forms/SelectProvince';
 import SelectCity from '@/components/forms/SelectCity';
-
-// @fix: el formulario deberia ser un componente??
+import defaultCanchaImage from '/public/cancha_default.webp';
+import { Cancha, TipoDeCancha } from '@/types/club';
+import { toast } from 'nextjs-toast-notify';
 
 export default function SumaTuCancha() {
   const initialFormData = {
     club: '',
     city: '',
     state: '',
-    type: '',
+    type: 'Trinquete' as TipoDeCancha,
     maps_location: '',
     phone: '',
-    image: null as File | null,
+    image: defaultCanchaImage.src,
   };
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState<Cancha>(initialFormData);
   const [loading, setLoading] = useState(false);
-
-  // @fix: group all in single handleChange
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-
-  //   setFormData((prev) => ({ ...prev, [name]: value }));
-  // };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFormData((prev) => ({ ...prev, image: e.target.files![0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, image: defaultCanchaImage.src }));
     }
   };
 
@@ -40,13 +36,19 @@ export default function SumaTuCancha() {
 
     const res = await createPendingCancha(formData);
 
-    // @fix: add toast message
     if (res!.ok) {
-      // @fix: el form no se limpia
+      toast.success('Cancha creada con éxito!', {
+        duration: 4000,
+        progress: true,
+        position: 'top-center',
+        transition: 'bottomToTopBounce',
+        icon: '',
+        sound: false,
+      });
+
+      setFormData({ ...formData, image: '' });
       setFormData(initialFormData);
-      setFormData({ ...formData, image: null });
       setLoading(false);
-      alert('Cancha creada');
     } else {
       console.error('Error al crear la cancha');
     }
@@ -86,7 +88,9 @@ export default function SumaTuCancha() {
           name="type"
           className="rounded-md"
           required
-          onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, type: e.target.value as TipoDeCancha })
+          }
         >
           <option value="" disabled>
             --Tipo de cancha--
@@ -110,12 +114,14 @@ export default function SumaTuCancha() {
         />
 
         <input
-          type="tel"
+          type="number"
           className="rounded-md"
           placeholder="Teléfono"
           value={formData.phone}
           name="phone"
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, phone: Number(e.target.value) })
+          }
           required
         />
 
@@ -124,7 +130,6 @@ export default function SumaTuCancha() {
           name="image"
           accept="image/png, image/jpeg"
           onChange={(e) => handleImageChange(e)}
-          required
         />
 
         <button

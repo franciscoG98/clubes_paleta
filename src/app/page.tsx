@@ -1,18 +1,21 @@
 'use client';
 
-import { getClubes } from '@/lib/getClubes';
+import { getPendingCanchas } from '@/lib/getClubes';
 import { useEffect, useState } from 'react';
 import ClubCard from '@/components/ClubCard';
 import Spinner from '@/components/Spinner';
 import { Slider } from '@/components/Slider';
+import { Cancha } from '@/types/club';
 
 export default function Home() {
-  const [clubes, setClubes] = useState([]);
+  const [clubes, setClubes] = useState<Cancha[]>([]);
 
   useEffect(() => {
-    getClubes()
-      .then((res) => setClubes(res))
-      .catch((err) => console.log(err));
+    getPendingCanchas()
+      .then((res) => {
+        setClubes(res.filter((cancha) => !cancha.pending));
+      })
+      .catch((err) => console.log('Error:', err));
   }, []);
 
   if (clubes.length < 1) {
@@ -45,20 +48,25 @@ export default function Home() {
 
         <Slider />
 
-        <section className="flex flex-wrap items-center justify-center gap-8">
-          {clubes.map((club, idx) => (
-            <ClubCard
-              key={idx}
-              provincia={club.provincia}
-              ciudad={club.ciudad}
-              clubName={club.clubName}
-              direccion={club.direccion}
-              mapsLink={club.mapsLink}
-              tipo={club.tipo}
-              contacto={club.contacto}
-              contacto2={club.contacto2}
-            />
-          ))}
+        <section className="m-12 flex flex-wrap justify-center gap-12">
+          {clubes.length > 0
+            ? clubes.map((cancha) => (
+                <article
+                  className="flex flex-col justify-between rounded-xl border border-slate-400 bg-white"
+                  key={cancha.id}
+                >
+                  <ClubCard
+                    image={cancha.image}
+                    provincia={cancha.state}
+                    ciudad={cancha.city}
+                    clubName={cancha.club}
+                    direccion={cancha.maps_location}
+                    mapsLink={'cancha.mapsLink'}
+                    tipo={cancha.type}
+                  />
+                </article>
+              ))
+            : 'No hay canchas aprobadas'}
         </section>
       </main>
     </>

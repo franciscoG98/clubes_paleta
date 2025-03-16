@@ -5,19 +5,25 @@ export type Club = {
   direccion: string;
   mapsLink?: string;
   tipo: string;
-  image?: string;
+  image?: string | File;
   contacto?: number;
   contacto2?: number | string;
 };
 
+export enum TipoDeCancha {
+  Trinquete = 'Trinquete',
+  Frontón = 'Frontón',
+  Cajón = 'Cajón',
+}
+
 export type Cancha = {
-  id: number;
+  id?: number;
   club: string;
   city: string;
   state: string;
-  pending: boolean;
+  pending?: boolean;
   maps_location: string;
-  type: 'Trinquete' | 'Frontón' | 'Cajón';
-  phone: number;
-  image: string;
+  type: TipoDeCancha;
+  phone: number | string;
+  image: string | File;
 };

@@ -17,6 +17,7 @@ const ClubCard = ({
     // @fix: sizes (height)
     // @fix: rounded
     <div className="h-[520px] w-[320px] rounded-xl border border-slate-500 bg-white">
+      {/* @fix: este include esta medio raro */}
       {image && image.includes('.') ? (
         <Image
           aria-hidden

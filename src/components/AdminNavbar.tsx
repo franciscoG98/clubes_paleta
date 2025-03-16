@@ -23,6 +23,18 @@ const paths: {
     title: 'Contribuir',
     href: '/contribute',
   },
+  {
+    title: 'admin',
+    href: '/admin',
+  },
+  {
+    title: 'approved',
+    href: '/admin/approved',
+  },
+  {
+    title: 'dashboard',
+    href: '/admin/dashboard',
+  },
 ];
 
 const Navbar = () => {
