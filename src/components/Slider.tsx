@@ -12,22 +12,22 @@ import { Navigation } from 'swiper/modules';
 
 const images = [
   {
-    src: '/banner/canchas_Fronton-30-mts.webp',
+    src: '/banner/01_canchas_Fronton-30-mts.webp',
     id: 1,
     alt: 'Fronton 30 mts',
   },
   {
-    src: '/banner/canchas_Fronton-36-mts.webp',
+    src: '/banner/02_canchas_Fronton-36-mts.webp',
     id: 2,
     alt: 'Fronton 36 mts',
   },
   {
-    src: '/banner/canchas_Fronton.webp',
+    src: '/banner/03_canchas_Fronton.webp',
     id: 3,
     alt: 'Fronton',
   },
   {
-    src: '/banner/canchas_Fronton2.webp',
+    src: '/banner/04_canchas_Fronton2.webp',
     id: 4,
     alt: 'Fronton 2',
   },
@@ -109,6 +109,8 @@ export const Slider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* TODO: change arrow color ? */}
       <div className="relative -top-8 w-full bg-gray-500">
         <div className="swiper-button-prev !after:text-sm  hover:scale-125">
           <FaCircleArrowLeft size={8} />

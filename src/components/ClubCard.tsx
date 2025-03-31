@@ -14,11 +14,9 @@ const ClubCard = ({
   contacto2,
 }: Club) => {
   return (
-    // @fix: sizes (height)
-    // @fix: rounded
-    <div className="h-[520px] w-[320px] rounded-xl border border-slate-500 bg-white">
-      {/* @fix: este include esta medio raro */}
-      {image && image.includes('.') ? (
+    // TODO: sizes (height) and rounded
+    <div className="h-[520px] w-[320px] rounded-xl border border-slate-500 bg-slate-200">
+      {image ? (
         <Image
           aria-hidden
           src={`${process.env.serverURI}/uploads/${image}`}
@@ -40,18 +38,17 @@ const ClubCard = ({
         />
       )}
 
-      {/* header provincia y ciudad */}
-      <span className="m-4 flex text-center text-2xl font-bold">
-        {ciudad}, {provincia}
-      </span>
+      <header className="ml-4 flex h-1/3 flex-col justify-around">
+        <span className="flex text-center text-2xl font-bold">
+          {ciudad}, {provincia}
+        </span>
 
-      <span className="m-4 flex text-center text-2xl font-bold">
-        {clubName}
-      </span>
+        <span className="flex text-center text-2xl font-bold">{clubName}</span>
 
-      <span className="m-2 rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
-        {tipo}
-      </span>
+        <span className="w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
+          {tipo}
+        </span>
+      </header>
 
       {/* location */}
       <div className="m-2">

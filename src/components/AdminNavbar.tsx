@@ -15,6 +15,10 @@ const paths: {
     title: 'Bucar Cancha',
     href: '/buscar-canchas',
   },
+  // {
+  //   title: 'Bucar Cancha old',
+  //   href: '/buscar-canchas-old',
+  // },
   {
     title: 'Sumá tu Cancha',
     href: '/suma-tu-cancha',
@@ -24,15 +28,15 @@ const paths: {
     href: '/contribute',
   },
   {
-    title: 'admin',
+    title: 'Admin',
     href: '/admin',
   },
   {
-    title: 'approved',
-    href: '/admin/approved',
+    title: 'Pending Canchas',
+    href: '/admin/pending-canchas',
   },
   {
-    title: 'dashboard',
+    title: 'Dashboard',
     href: '/admin/dashboard',
   },
 ];
@@ -41,7 +45,7 @@ const Navbar = () => {
   const segment = useSelectedLayoutSegment();
 
   return (
-    <nav className="mb-8 flex h-16 items-center justify-around bg-blue-950 font-semibold md:text-xl">
+    <nav className="flex h-16 items-center justify-around bg-green-800 font-semibold md:text-xl">
       {paths.map((item) => (
         <Link
           href={item.href}

@@ -1,35 +1,29 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getClubes } from '@/lib/getClubes';
+import { getCanchas } from '@/lib/getClubes';
 import ClubCard from '@/components/ClubCard';
-import { Club } from '@/types/club';
+import { Cancha } from '@/types/club';
 
-// @fix: combine with new select component
-
-export default function Filter() {
-  const [result, setResult] = useState<Club[]>([]);
+export default function BuscarCanchas() {
+  const [result, setResult] = useState<Cancha[]>([]);
 
   const [provinciaFilter, setProvinciaFilter] = useState('');
   const [tipoCanchaFilter, setTipoCanchaFilter] = useState<string[]>([]);
   const [provinciaOptions, setProvinciaOptions] = useState<string[]>([]);
 
-  // @fix: loading state when lookin diferent of first load
+  // TODO: loading state when lookin diferent of first load
 
   useEffect(() => {
     const fetchData = async () => {
-      const clubes = await getClubes();
+      const clubes = await getCanchas();
 
-      const uniqueClubes = clubes.filter(
-        (club, index, self) =>
-          index === self.findIndex((c) => c.clubName === club.clubName),
-      );
-
-      setResult(uniqueClubes);
+      setResult(clubes);
 
       const provincias = Array.from(
-        new Set(uniqueClubes.map((club) => club.provincia)),
+        new Set(clubes.map((club: Cancha) => club.state)),
       );
+      // TODO: type provincias
       setProvinciaOptions(provincias);
     };
 
@@ -50,15 +44,16 @@ export default function Filter() {
 
   const filteredClubes = result.filter((club) => {
     const provinciaMatches =
-      provinciaFilter === '' || club.provincia === provinciaFilter;
+      provinciaFilter === '' || club.state === provinciaFilter;
     const tipoCanchaMatches =
-      tipoCanchaFilter.length === 0 || tipoCanchaFilter.includes(club.tipo);
+      tipoCanchaFilter.length === 0 || tipoCanchaFilter.includes(club.type);
 
     return provinciaMatches && tipoCanchaMatches;
   });
 
   const handleResetFilters = () => {
     setProvinciaFilter('');
+    // TODO type tipo de cancha
     setTipoCanchaFilter('');
   };
 
@@ -128,7 +123,7 @@ export default function Filter() {
         </label>
 
         <button
-          className="mb-2 flex flex-wrap justify-center whitespace-nowrap rounded-md border border-none bg-black px-3 py-1.5 font-semibold text-white hover:bg-green-400 hover:text-black"
+          className="mb-2 flex flex-wrap justify-center whitespace-nowrap rounded-md border border-none bg-gray-900 px-3 py-1.5 font-semibold text-white hover:bg-gray-700"
           onClick={handleResetFilters}
         >
           Borrar Filtros
@@ -141,14 +136,13 @@ export default function Filter() {
             return (
               <ClubCard
                 key={idx}
-                provincia={club.provincia}
-                ciudad={club.ciudad}
-                clubName={club.clubName}
-                direccion={club.direccion}
-                mapsLink={club.mapsLink}
-                tipo={club.tipo}
-                contacto={club.contacto}
-                contacto2={club.contacto2}
+                image={club.image}
+                ciudad={club.city}
+                provincia={club.state}
+                clubName={club.club}
+                direccion={club.maps_location}
+                tipo={club.type}
+                contacto2={club.phone}
               />
             );
           })

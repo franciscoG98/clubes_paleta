@@ -16,17 +16,19 @@ export default function SumaTuCancha() {
     type: 'Trinquete' as TipoDeCancha,
     maps_location: '',
     phone: '',
-    image: defaultCanchaImage.src,
+    image: defaultCanchaImage,
   };
 
   const [formData, setFormData] = useState<Cancha>(initialFormData);
   const [loading, setLoading] = useState(false);
 
+  // TODO: default image not working
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFormData((prev) => ({ ...prev, image: e.target.files![0] }));
     } else {
-      setFormData((prev) => ({ ...prev, image: defaultCanchaImage.src }));
+      // setFormData((prev) => ({ ...prev, image: defaultCanchaImage.src }));
+      console.log('va sin imagen capo');
     }
   };
 
@@ -60,7 +62,7 @@ export default function SumaTuCancha() {
         Sumá tu Cancha
       </h1>
 
-      {/* @fix: add required * and touched properties */}
+      {/* TODO: add required * and touched properties */}
       <form onSubmit={handleSubmit} className="mt-8 flex w-96 flex-col gap-4">
         <input
           type="text"
@@ -100,7 +102,7 @@ export default function SumaTuCancha() {
           <option value="Cajón">Cajón</option>
         </select>
 
-        {/* @fix: o direccion?? */}
+        {/* TODO: o direccion?? */}
         <input
           type="text"
           className="rounded-md"
@@ -125,6 +127,7 @@ export default function SumaTuCancha() {
           required
         />
 
+        {/* TODO: required? */}
         <input
           type="file"
           name="image"
@@ -133,7 +136,7 @@ export default function SumaTuCancha() {
         />
 
         <button
-          className="mx-auto w-fit rounded-md bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-800"
+          className="mx-auto w-fit rounded-md bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-600"
           type="submit"
           disabled={loading}
         >

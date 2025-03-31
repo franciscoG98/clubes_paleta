@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-// @fix: metele diseño hijo de puta
+// TODO: metele diseño hijo de puta
 export default function ContributePage() {
   return (
     <main className="mx-12 flex flex-col items-center md:mx-auto md:w-1/2">

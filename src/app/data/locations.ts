@@ -2,7 +2,16 @@ export const locations = [
   {
     id: 'BA',
     name: 'Buenos Aires',
-    cities: ['La Plata', 'Mar del Plata', 'Bahía Blanca'],
+    cities: [
+      'La Plata',
+      'Mar del Plata',
+      'Bahía Blanca',
+      'Gran Buenos Aires',
+      'San Martín',
+      'Ramallo',
+      'Pilar',
+      'Bernal',
+    ],
   },
   {
     id: 'CABA',

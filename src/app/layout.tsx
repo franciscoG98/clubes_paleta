@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import './globals.css';
 import { auth } from '@/auth';
 import AdminNavbar from '@/components/AdminNavbar';
+// import Image from 'next/image';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -64,7 +65,8 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {session?.user ? <AdminNavbar /> : <Navbar />}
-        {children}
+
+        <div className="min-h-screen bg-neutral-100">{children}</div>
       </body>
     </html>
   );
