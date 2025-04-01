@@ -20,7 +20,7 @@ export default function ApprovedCanchasPage() {
     <main className="mx-auto flex flex-col items-center justify-center gap-6">
       <h1 className="text-3xl font-bold">Canchas Aprobadas</h1>
 
-      <div className="overflow-hidden rounded-lg border">
+      <div className="overflow-hidden rounded-lg border-2">
         <table className="min-w-full table-auto divide-y divide-neutral-300 bg-neutral-100">
           <thead className="bg-neutral-300">
             <tr>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 // TODO: metele diseño hijo de puta
-export default function ContributePage() {
+export default function AcercaDePage() {
   return (
     <main className="mx-12 flex flex-col items-center md:mx-auto md:w-1/2">
       <h1 className="my-8 text-center text-3xl font-semibold">Contribuir</h1>

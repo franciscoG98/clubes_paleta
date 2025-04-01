@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { Club } from '@/types/club';
 
@@ -7,7 +6,7 @@ const ClubCard = ({
   ciudad,
   clubName,
   direccion,
-  mapsLink,
+  // mapsLink,
   tipo,
   image,
   contacto,
@@ -15,8 +14,8 @@ const ClubCard = ({
 }: Club) => {
   return (
     // TODO: sizes (height) and rounded
-    <div className="h-[520px] w-[320px] rounded-xl border border-slate-500 bg-slate-200">
-      {image ? (
+    <div className="h-[520px] w-[320px] rounded-xl border border-slate-500">
+      {image?.slice(30) ? (
         <Image
           aria-hidden
           src={`${process.env.serverURI}/uploads/${image}`}
@@ -43,7 +42,7 @@ const ClubCard = ({
           {ciudad}, {provincia}
         </span>
 
-        <span className="flex text-center text-2xl font-bold">{clubName}</span>
+        <h3 className="flex text-center text-2xl font-bold">{clubName}</h3>
 
         <span className="w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
           {tipo}
@@ -51,9 +50,9 @@ const ClubCard = ({
       </header>
 
       {/* location */}
-      <div className="m-2">
+      <div className="m-4">
         <p>Dirección: {direccion}</p>
-        {mapsLink !== '' && mapsLink !== 'H' && (
+        {/* {mapsLink !== '' && mapsLink !== 'H' && (
           <Link
             className="text-blue-600 underline hover:no-underline"
             href={mapsLink || ''}
@@ -61,11 +60,11 @@ const ClubCard = ({
           >
             Ver en Google Maps
           </Link>
-        )}
+        )} */}
       </div>
 
       {/* footer contact */}
-      <footer className="m-2 flex flex-col justify-between">
+      <footer className="m-4 flex flex-col justify-between">
         {contacto && (
           <span className="flex">
             Telefono:
@@ -77,11 +76,7 @@ const ClubCard = ({
             </a>
           </span>
         )}
-        {contacto2 !== 0 && (
-          <span className="text-blue-600 underline hover:no-underline">
-            {contacto2}
-          </span>
-        )}
+        {contacto2 !== 0 && <span>Telefono: {contacto2}</span>}
       </footer>
     </div>
   );
