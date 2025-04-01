@@ -30,11 +30,11 @@ export default function Home() {
         </h2>
       </header>
 
-      <main className="mx-auto flex w-3/4 flex-col  gap-8">
+      <main className="mx-auto flex w-3/4 flex-col gap-8 p-8">
         <Slider />
 
         {clubes && clubes.length > 0 ? (
-          <section className="m-12 flex flex-wrap justify-center gap-12">
+          <section className="flex flex-wrap justify-between gap-12">
             {clubes.map((cancha) => (
               <ClubCard
                 key={cancha.id}

@@ -12,54 +12,39 @@ import { Navigation } from 'swiper/modules';
 
 const images = [
   {
-    src: '/banner/01_canchas_Fronton-30-mts.webp',
+    src: '/banner/01_canchas_paleta-sardina-martiren.webp',
     id: 1,
-    alt: 'Fronton 30 mts',
+    alt: 'Gabriel "Sardina" Martirén',
   },
   {
-    src: '/banner/02_canchas_Fronton-36-mts.webp',
+    src: '/banner/02_canchas_paleta-vaca.webp',
     id: 2,
-    alt: 'Fronton 36 mts',
+    alt: 'Paleta con hueso de paleta de vaca',
   },
   {
-    src: '/banner/03_canchas_Fronton.webp',
+    src: '/banner/03_canchas_paleta-kerosene.webp',
     id: 3,
-    alt: 'Fronton',
+    alt: 'Las primeras paletas de madera se hicieron con cajones de kerosene',
   },
   {
-    src: '/banner/04_canchas_Fronton2.webp',
+    src: '/banner/04_canchas_paleta-madera-cancha-burzaco.webp',
     id: 4,
-    alt: 'Fronton 2',
+    alt: 'Cancha de burzaco donde Martirén jugo el primer partido con paleta de madera',
   },
   {
-    src: '/banner/canchas_paleta-kerosene.webp',
+    src: '/banner/05_canchas_Fronton.webp',
     id: 5,
-    alt: 'paleta con madera de cajon de kerosene',
+    alt: 'Frontón, cancha abierta',
   },
   {
-    src: '/banner/canchas_paleta-madera-cancha-burzaco.webp',
+    src: '/banner/06_canchas_Fronton-36-mts.webp',
     id: 6,
-    alt: 'cancha de burzaco donde martiren jugo el primer partido con paletea de madera',
+    alt: 'Modelo Fronton 36 mts',
   },
   {
-    src: '/banner/canchas_paleta-primera-vasquito-1915.webp',
+    src: '/banner/07_canchas_Trinquete.webp',
     id: 7,
-    alt: 'primera paleta de madera industrializada',
-  },
-  {
-    src: '/banner/canchas_paleta-sardina-martiren.webp',
-    id: 8,
-    alt: 'sardina martiren',
-  },
-  {
-    src: '/banner/canchas_paleta-vaca.webp',
-    id: 9,
-    alt: 'paleta con paleta de vaca',
-  },
-  {
-    src: '/banner/canchas_Trinquete.webp',
-    id: 10,
-    alt: 'trinquete',
+    alt: 'Modelo Trinquete',
   },
 ];
 
@@ -110,7 +95,6 @@ export const Slider = () => {
         ))}
       </Swiper>
 
-      {/* TODO: change arrow color ? */}
       <div className="relative -top-8 w-full bg-gray-500">
         <div className="swiper-button-prev !after:text-sm  hover:scale-125">
           <FaCircleArrowLeft size={8} />
