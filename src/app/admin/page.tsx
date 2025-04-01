@@ -9,18 +9,25 @@ const AdminPage = async () => {
 
   if (session?.user) {
     return (
-      <div>
-        <h1>Canchas de Pelota Admin Section</h1>
-        <p>Usuario loggeado: {session.user.name}</p>
-        <p>Email: {session.user.email}</p>
+      <main className="mx-auto flex w-3/4 flex-col items-center justify-center gap-4 pt-6">
+        <h1 className="text-2xl font-semibold">
+          Canchas de Pelota Admin Section
+        </h1>
+
+        <p className="flex flex-col">
+          <span>Usuario loggeado: {session.user.name}</span>
+          <span>Email: {session.user.email}</span>
+        </p>
         <LogoutButton />
-      </div>
+      </main>
     );
   }
 
   return (
-    <main className="mx-auto flex w-3/4  flex-col items-center justify-center">
-      <h1 className="text-2xl font-semibold">AdminPage</h1>
+    <main className="mx-auto flex w-3/4 flex-col items-center justify-center gap-4 pt-6">
+      <h1 className="text-2xl font-semibold">
+        Canchas de Pelota Admin Section
+      </h1>
       <span>No estas loggeado</span>
       <LoginButton />
     </main>

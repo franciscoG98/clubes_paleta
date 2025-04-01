@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getCanchas } from '@/lib/getClubes';
+import { deleteCancha, getCanchas } from '@/lib/getClubes';
 import { Cancha } from '@/types/club';
 import { MdEdit, MdDelete } from 'react-icons/md';
 
@@ -16,9 +16,14 @@ export default function ApprovedCanchasPage() {
       .catch((err) => console.log('Error:', err));
   }, []);
 
+  // TODO type id
+  const handleDelete = (id) => {
+    deleteCancha(id);
+  };
+
   return (
     <main className="mx-auto flex flex-col items-center justify-center gap-6">
-      <h1 className="text-3xl font-bold">Canchas Aprobadas</h1>
+      <h1 className="text-3xl font-bold">Admin Dashboard</h1>
 
       <div className="overflow-hidden rounded-lg border-2">
         <table className="min-w-full table-auto divide-y divide-neutral-300 bg-neutral-100">
@@ -78,14 +83,18 @@ export default function ApprovedCanchasPage() {
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   {c.type}
                 </td>
-                {/* TODO crud buttons */}
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
+                  {/* TODO edit action */}
                   <button className="flex items-center justify-between hover:text-green-800 hover:underline">
                     <MdEdit color="green" /> Editar
                   </button>
                 </td>
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
-                  <button className="flex items-center justify-between hover:text-red-500 hover:underline">
+                  {/* TODO check onClick */}
+                  <button
+                    onClick={() => handleDelete(c.id)}
+                    className="flex items-center justify-between hover:text-red-500 hover:underline"
+                  >
                     <MdDelete fill="#BA3737" /> Eliminar
                   </button>
                 </td>

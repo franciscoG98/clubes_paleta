@@ -88,3 +88,16 @@ export const approveCancha = async (id: number) => {
     );
   }
 };
+
+export const deleteCancha = async (id: number) => {
+  try {
+    const res = await fetch(`${process.env.serverURI}/canchas/${id}`, {
+      method: 'DELETE',
+    });
+
+    return res;
+  } catch (error) {
+    console.error('Error en el servidor:', error);
+    return { ok: false };
+  }
+};
