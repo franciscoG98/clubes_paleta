@@ -8,13 +8,7 @@ import { Slider } from '@/components/Slider';
 import { Cancha } from '@/types/club';
 import Link from 'next/link';
 
-import {
-  MapPin,
-  Search,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react';
+import { MapPin, Search } from 'lucide-react';
 
 export default function Home() {
   const [clubes, setClubes] = useState<Cancha[]>([]);
@@ -84,14 +78,13 @@ export default function Home() {
             {clubes.map((cancha) => (
               <ClubCard
                 key={cancha.id}
+                club={cancha.club}
+                city={cancha.city}
+                state={cancha.state}
+                maps_location={cancha.maps_location}
+                type={cancha.type}
+                phone={cancha.phone}
                 image={cancha.image}
-                provincia={cancha.state}
-                ciudad={cancha.city}
-                clubName={cancha.club}
-                direccion={cancha.maps_location}
-                mapsLink={'cancha.mapsLink'}
-                tipo={cancha.type}
-                contacto2={cancha.phone}
               />
             ))}
           </section>

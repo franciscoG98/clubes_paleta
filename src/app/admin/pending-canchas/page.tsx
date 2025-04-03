@@ -16,7 +16,7 @@ export default function PendingCanchasPage() {
   useEffect(() => {
     getPendingCanchas()
       .then((res) => {
-        setCanchasToReview(res.filter((cancha) => cancha.pending));
+        setCanchasToReview(res.filter((cancha: Cancha) => cancha.pending));
       })
       .catch((err) => console.log('Error:', err));
   }, []);
@@ -53,14 +53,13 @@ export default function PendingCanchasPage() {
                 key={canchaToReview.id}
               >
                 <ClubCard
+                  club={canchaToReview.club}
+                  city={canchaToReview.city}
+                  state={canchaToReview.state}
+                  maps_location={canchaToReview.maps_location}
+                  type={canchaToReview.type}
+                  phone={canchaToReview.phone}
                   image={canchaToReview.image}
-                  provincia={canchaToReview.state}
-                  ciudad={canchaToReview.city}
-                  clubName={canchaToReview.club}
-                  direccion={canchaToReview.maps_location}
-                  mapsLink={'canchaToReview.mapsLink'}
-                  tipo={canchaToReview.type}
-                  contacto2={canchaToReview.phone}
                 />
 
                 {/* TODO: reject */}

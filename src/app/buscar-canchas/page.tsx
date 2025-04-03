@@ -140,17 +140,17 @@ export default function BuscarCanchas() {
       {/* Result Section */}
       <div className="mb-12 flex flex-wrap items-center justify-center gap-8">
         {filteredClubes.length > 0 ? (
-          filteredClubes.map((club, idx) => {
+          filteredClubes.map((c, idx) => {
             return (
               <ClubCard
                 key={idx}
-                image={club.image}
-                ciudad={club.city}
-                provincia={club.state}
-                clubName={club.club}
-                direccion={club.maps_location}
-                tipo={club.type}
-                contacto2={club.phone}
+                club={c.club}
+                city={c.city}
+                state={c.state}
+                maps_location={c.maps_location}
+                type={c.type}
+                phone={c.phone}
+                image={c.image}
               />
             );
           })
