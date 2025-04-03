@@ -7,7 +7,7 @@ import LogoutButton from '@/components/LogoutButton';
 const AdminPage = async () => {
   const session = await auth();
 
-  if (session?.user) {
+  if (session?.user && session?.user?.email === process.env.MAIL) {
     return (
       <main className="mx-auto flex w-3/4 flex-col items-center justify-center gap-4 pt-6">
         <h1 className="text-2xl font-semibold">
