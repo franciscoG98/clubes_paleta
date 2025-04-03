@@ -18,7 +18,7 @@ export default function SumaTuCancha() {
     state: '',
     type: 'Trinquete' as TipoDeCancha,
     maps_location: '',
-    phone: '',
+    phone: 0,
     image: defaultCanchaImage,
   };
 
@@ -165,14 +165,15 @@ export default function SumaTuCancha() {
           <section className="space-y-4">
             <fieldset>
               <label className="font-semibold">Teléfono</label>
+              {/* TODO type phone length etc */}
               <input
                 type="number"
                 className="w-full rounded-md"
-                placeholder="Teléfono"
+                placeholder="Teléfono ejemplo 110303456"
                 value={formData.phone}
                 name="phone"
                 onChange={(e) =>
-                  setFormData({ ...formData, phone: Number(e.target.value) })
+                  setFormData({ ...formData, phone: parseInt(e.target.value) })
                 }
                 required
               />

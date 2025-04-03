@@ -14,6 +14,6 @@ export type Cancha = {
   pending?: boolean;
   maps_location: string;
   type: TipoDeCancha;
-  phone: string;
+  phone: number;
   image: string | StaticImport;
 };

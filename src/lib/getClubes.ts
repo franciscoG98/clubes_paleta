@@ -29,7 +29,6 @@ export const getPendingCanchas = async () => {
   }
 };
 
-// TODO: formData type Cancha problem with image
 export const createPendingCancha = async (formData: Cancha) => {
   try {
     const data = new FormData();
@@ -38,9 +37,8 @@ export const createPendingCancha = async (formData: Cancha) => {
     data.append('state', formData.state);
     data.append('type', formData.type);
     data.append('maps_location', formData.maps_location);
-    data.append('phone', formData.phone);
+    data.append('phone', formData.phone as unknown as string);
     data.append('image', formData.image as unknown as string);
-    // data.append('image', formData.image);
     const res = await fetch(`${process.env.serverURI}/pending-canchas`, {
       method: 'POST',
       body: data,
