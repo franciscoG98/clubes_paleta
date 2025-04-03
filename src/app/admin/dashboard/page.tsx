@@ -17,7 +17,7 @@ export default function ApprovedCanchasPage() {
   }, []);
 
   // TODO type id
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     deleteCancha(id);
   };
 
@@ -92,7 +92,7 @@ export default function ApprovedCanchasPage() {
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   {/* TODO check onClick */}
                   <button
-                    onClick={() => handleDelete(c.id)}
+                    onClick={() => handleDelete(c.id as number)}
                     className="flex items-center justify-between hover:text-red-500 hover:underline"
                   >
                     <MdDelete fill="#BA3737" /> Eliminar
