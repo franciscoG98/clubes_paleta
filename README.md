@@ -18,6 +18,12 @@ npm i           # install dependencies
 npm run dev     # run it
 ```
 
+next 15
+node express psql sequelize
+next auth 15 beta with github
+
+what is api folder for????????
+
 Ir a [http://localhost:3000](http://localhost:3000) en el navegador para ver el resultado.
 
 Esta el ejemplo
@@ -37,15 +43,54 @@ de como guardar la variable de entorno para google sheets
 
 ## TODO:
 
-Definir:
-- [?] busqueda
-    - nombre de club
-    - ciudad tmb
-
-Pendiente:
+### Pendiente:
 - [ ] imagenes
 - [ ] agregar el link de las que tienen pagina
-- [ ] hacer circular el formulario / llamar
+- [ ] recopilar canchas + cargar excel en la db
 - [ ] SEO trafico etc...
-- [ ] loader en buscar clubes no error de una
+- [ ] refactor club card
+    - [ ] default imagen
+    - [ ] convertir direccion en link de maps
+- [ ] admin
+    - [ ] decline canchas (admin/pending canchas)
+    - [ ] mejorar seguridad de login (2 factor de autenticaicon o verificar mail y contraseña u otp...)
+- [ ] handle images upload
+    - [ ] restringir el tamaño o ratio de la imagen / ver post de linkedin / solucionar warning de imagenes por resize
+    - [ ] dar la opcion de recortarla (?)
+    - [ ] preview de la imagen (?)
+- [ ] mapa de canchas (como???????)
+- [ ] clean code
+    - [ ] todos funciones o todos arrow funtions
+    - [ ] ver que esten bien usados los use client o use server
+    - [ ] separar bien la logica dumb and smart components
 - [ ] 
+
+
+
+
+
+## re-redactar descripcion para README
+
+The user is building an app for "canchas de pelota paleta" (pelota paleta courts) in Argentina. The app has:
+
+1. A Next.js frontend with TypeScript
+2. A Node.js Express backend with TypeScript
+
+
+The main functionality involves:
+
+- Users can submit their courts ("canchas") which go into a pending state
+- Admin can approve, edit, or reject these pending courts
+- When approved, the pending court should be removed from the pending collection and added to the main courts collection
+
+
+The user has two models:
+
+- Cancha (approved courts)
+- PendingCancha (courts submitted by users waiting for approval)
+
+
+The user wants help with:
+
+1. The controller logic to move a court from pending to approved
+2. Whether they need a separate create controller for Cancha or if they should only create Canchas through the approval process

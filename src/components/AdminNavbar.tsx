@@ -1,15 +1,15 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { useSelectedLayoutSegment } from 'next/navigation';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const paths: {
   title: string;
   href: string;
 }[] = [
   {
-    title: 'Bucar Canchas',
+    title: 'Bucar Cancha',
     href: '/buscar-canchas',
   },
   {
@@ -20,10 +20,22 @@ const paths: {
     title: 'Acerca de',
     href: '/acerca-de',
   },
+  {
+    title: 'Admin',
+    href: '/admin',
+  },
+  {
+    title: 'Pending Canchas',
+    href: '/admin/pending-canchas',
+  },
+  {
+    title: 'Dashboard',
+    href: '/admin/dashboard',
+  },
 ];
 
 const Navbar = () => {
-  const segment = useSelectedLayoutSegment();
+  const pathname = usePathname();
 
   return (
     <nav className="flex items-center justify-around bg-neutral-100 px-36 text-xl font-semibold">
@@ -48,7 +60,7 @@ const Navbar = () => {
             href={item.href}
             key={item.title}
             passHref
-            className={`p-4 hover:underline focus-visible:border-gray-800 ${'/' + segment === item.href ? 'rounded-xl bg-gray-300 hover:no-underline' : ''}`}
+            className={`whitespace-nowrap p-4 hover:underline focus-visible:border-gray-800 ${'/' + pathname.slice(1) === item.href ? 'rounded-xl bg-gray-300 hover:no-underline' : ''}`}
           >
             {item.title}
           </Link>
