@@ -1,7 +1,7 @@
 import { locations } from '../../app/data/locations';
 
 type Props = {
-  handleProvince: (any) => void;
+  handleProvince: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const SelectProvince = ({ handleProvince }: Props) => {

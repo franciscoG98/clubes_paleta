@@ -2,7 +2,7 @@ import { locations } from '../../app/data/locations';
 
 type Props = {
   selectedProvince: string;
-  handleCity: (any) => void;
+  handleCity: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const SelectCity = ({ selectedProvince, handleCity }: Props) => {
