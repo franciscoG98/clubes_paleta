@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Club } from '@/types/club';
+import { MapPin, Phone } from 'lucide-react';
 
 const ClubCard = ({
   provincia,
@@ -14,7 +15,10 @@ const ClubCard = ({
 }: Club) => {
   return (
     // TODO: sizes (height) and rounded
-    <div className="h-[520px] w-[320px] rounded-xl border border-slate-500">
+    <div className="h-[520px] w-[320px] rounded-xl border border-slate-400">
+      <span className="absolute ml-2 mt-2 w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
+        {tipo}
+      </span>
       {image?.slice(30) ? (
         <Image
           aria-hidden
@@ -37,47 +41,50 @@ const ClubCard = ({
         />
       )}
 
-      <header className="ml-4 flex h-1/3 flex-col justify-around">
-        <span className="flex text-center text-2xl font-bold">
-          {ciudad}, {provincia}
-        </span>
+      <header className="ml-4 mt-4 flex flex-col justify-around gap-2">
+        <h3 className="text-2xl font-bold">{clubName}</h3>
 
-        <h3 className="flex text-center text-2xl font-bold">{clubName}</h3>
-
-        <span className="w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
-          {tipo}
-        </span>
+        <p className="flex gap-2 text-gray-500">
+          <MapPin className="size-5" />
+          <span>
+            {ciudad}, {provincia}
+          </span>
+        </p>
       </header>
 
       {/* location */}
       <div className="m-4">
         <p>Dirección: {direccion}</p>
-        {/* {mapsLink !== '' && mapsLink !== 'H' && (
-          <Link
-            className="text-blue-600 underline hover:no-underline"
-            href={mapsLink || ''}
-            passHref={true}
-          >
-            Ver en Google Maps
-          </Link>
-        )} */}
       </div>
 
       {/* footer contact */}
-      <footer className="m-4 flex flex-col justify-between">
+      <div className="m-4 flex flex-col justify-between">
         {contacto && (
-          <span className="flex">
+          <span className="flex items-center">
             Telefono:
             <a
-              className="text-blue-600 underline hover:no-underline"
+              className="ml-2 flex gap-2 text-green-500 hover:underline"
               href={`tel:+549${contacto}`}
             >
               {contacto}
+              <Phone className="size-5" />
             </a>
           </span>
         )}
-        {contacto2 !== 0 && <span>Telefono: {contacto2}</span>}
-      </footer>
+
+        {contacto2 && (
+          <span className="flex items-center">
+            Telefono:
+            <a
+              className="ml-2 flex gap-2 text-green-500 hover:underline"
+              href={`tel:+549${contacto2}`}
+            >
+              {contacto2}
+              <Phone className="size-5" />
+            </a>
+          </span>
+        )}
+      </div>
     </div>
   );
 };

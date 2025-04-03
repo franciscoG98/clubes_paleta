@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
-import Navbar from '@/components/Navbar';
-import './globals.css';
 import { auth } from '@/auth';
+import localFont from 'next/font/local';
 import AdminNavbar from '@/components/AdminNavbar';
-// import Image from 'next/image';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import './globals.css';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -67,6 +67,7 @@ export default async function RootLayout({
         {session?.user ? <AdminNavbar /> : <Navbar />}
 
         <div className="min-h-screen bg-neutral-100">{children}</div>
+        <Footer />
       </body>
     </html>
   );
