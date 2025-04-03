@@ -22,22 +22,11 @@ export default function PendingCanchasPage() {
       .catch((err) => console.log('Error:', err));
   }, []);
 
-  async function handleApprove(id: string) {
-    const res = await togglePendingCancha(parseInt(id), false);
-    const res2 = await approveCancha(parseInt(id));
+  async function handleApprove(id: number) {
+    const res = await togglePendingCancha(id, false);
+    const res2 = await approveCancha(id);
 
-    if (res2?.ok) {
-      toast.success('paso gato', {
-        duration: 4000,
-        progress: true,
-        position: 'bottom-center',
-        transition: 'bottomToTopBounce',
-        icon: '',
-        sound: false,
-      });
-    }
-
-    if (res?.ok) {
+    if (res?.ok && res2?.ok) {
       toast.success('Cancha Aprobada, dale masa nomas vieja!', {
         duration: 4000,
         progress: true,
@@ -49,9 +38,7 @@ export default function PendingCanchasPage() {
     }
 
     setCanchasToReview(
-      canchasToReview.filter(
-        (canchaToReview) => canchaToReview.id !== parseInt(id),
-      ),
+      canchasToReview.filter((canchaToReview) => canchaToReview.id !== id),
     );
   }
 
@@ -86,7 +73,7 @@ export default function PendingCanchasPage() {
                 {/* TODO: id type */}
                 <button
                   className="absolute bottom-0 right-0 w-1/2 rounded-br-md bg-blue-500 p-2 font-semibold text-white"
-                  onClick={() => handleApprove(canchaToReview.id)}
+                  onClick={() => handleApprove(canchaToReview.id as number)}
                 >
                   ✅ Aprobar
                 </button>
