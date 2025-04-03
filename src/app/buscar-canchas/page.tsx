@@ -22,8 +22,7 @@ export default function BuscarCanchas() {
       const provincias = Array.from(
         new Set(clubes.map((club: Cancha) => club.state)),
       );
-      // TODO: type provincias
-      setProvinciaOptions(provincias);
+      setProvinciaOptions(provincias as string[]);
     };
 
     fetchData();
@@ -52,8 +51,7 @@ export default function BuscarCanchas() {
 
   const handleResetFilters = () => {
     setProvinciaFilter('');
-    // TODO type tipo de cancha
-    setTipoCanchaFilter('');
+    setTipoCanchaFilter([]);
   };
 
   return (

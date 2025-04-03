@@ -15,8 +15,7 @@ export const getCanchas = async () => {
   }
 };
 
-// TODO: type promise cancha ? promise?
-export const getPendingCanchas = async (): Promise<Cancha[]> => {
+export const getPendingCanchas = async () => {
   try {
     const res = await fetch(`${process.env.serverURI}/pending-canchas`);
     const clubes = await res.json();
@@ -30,8 +29,8 @@ export const getPendingCanchas = async (): Promise<Cancha[]> => {
   }
 };
 
-// TODO: formData type Cancha problem with phone numeber or string
-export const createPendingCancha = async (formData) => {
+// TODO: formData type Cancha problem with image
+export const createPendingCancha = async (formData: Cancha) => {
   try {
     const data = new FormData();
     data.append('club', formData.club);
@@ -40,7 +39,8 @@ export const createPendingCancha = async (formData) => {
     data.append('type', formData.type);
     data.append('maps_location', formData.maps_location);
     data.append('phone', formData.phone);
-    data.append('image', formData.image);
+    data.append('image', formData.image as unknown as string);
+    // data.append('image', formData.image);
     const res = await fetch(`${process.env.serverURI}/pending-canchas`, {
       method: 'POST',
       body: data,

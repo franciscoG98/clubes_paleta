@@ -1,3 +1,5 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+
 export type Club = {
   provincia: string;
   ciudad: string;
@@ -24,6 +26,6 @@ export type Cancha = {
   pending?: boolean;
   maps_location: string;
   type: TipoDeCancha;
-  phone: number | string;
-  image: string | File;
+  phone: string;
+  image: string | StaticImport;
 };

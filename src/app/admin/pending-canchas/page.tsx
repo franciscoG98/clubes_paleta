@@ -9,7 +9,6 @@ import {
 import { Cancha } from '@/types/club';
 import { toast } from 'nextjs-toast-notify';
 import ClubCard from '@/components/ClubCard';
-// import { auth } from '@/auth';
 
 export default function PendingCanchasPage() {
   const [canchasToReview, setCanchasToReview] = useState<Cancha[]>([]);
@@ -42,7 +41,6 @@ export default function PendingCanchasPage() {
     );
   }
 
-  // TODO: reject!!!!
   return (
     <main className="mx-auto flex flex-col items-center justify-center gap-6">
       <h1 className="text-3xl font-bold">Canchas pendientes de Revisión</h1>
@@ -65,20 +63,17 @@ export default function PendingCanchasPage() {
                   contacto2={canchaToReview.phone}
                 />
 
-                {/* TODO: id type */}
+                {/* TODO: reject */}
                 <button className="absolute bottom-0 left-0 w-1/2 rounded-bl-md bg-red-500 p-2 font-semibold text-white">
                   no anda
                 </button>
 
-                {/* TODO: id type */}
                 <button
                   className="absolute bottom-0 right-0 w-1/2 rounded-br-md bg-blue-500 p-2 font-semibold text-white"
                   onClick={() => handleApprove(canchaToReview.id as number)}
                 >
                   ✅ Aprobar
                 </button>
-
-                {/* TODO: togglePendingCancha */}
               </article>
             ))
           : 'No hay canchas para aprobar'}

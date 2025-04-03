@@ -7,7 +7,8 @@ import SelectCity from '@/components/forms/SelectCity';
 import Image from 'next/image';
 import defaultCanchaImage from '/public/cancha_default.webp';
 import { Cancha, TipoDeCancha } from '@/types/club';
-import { MapPin, Phone, Clock, Upload } from 'lucide-react';
+import { MapPin, Phone, Upload } from 'lucide-react';
+// import { MapPin, Phone, Clock, Upload } from 'lucide-react';
 import { toast } from 'nextjs-toast-notify';
 
 export default function SumaTuCancha() {

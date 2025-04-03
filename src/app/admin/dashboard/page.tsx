@@ -16,7 +16,6 @@ export default function ApprovedCanchasPage() {
       .catch((err) => console.log('Error:', err));
   }, []);
 
-  // TODO type id
   const handleDelete = (id: number) => {
     deleteCancha(id);
   };
