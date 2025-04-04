@@ -1,9 +1,11 @@
 import { Cancha } from '@/types/club';
 import { NextResponse } from 'next/server';
 
+console.log('Server URI:', process.env.NEXT_PUBLIC_SERVER_URI);
+
 export const getCanchas = async () => {
   try {
-    const res = await fetch(`${process.env.serverURI}/canchas`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/canchas`);
     const canchas = await res.json();
 
     return await canchas;
@@ -17,7 +19,9 @@ export const getCanchas = async () => {
 
 export const getPendingCanchas = async () => {
   try {
-    const res = await fetch(`${process.env.serverURI}/pending-canchas`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas`,
+    );
     const clubes = await res.json();
 
     return await clubes;
@@ -39,10 +43,13 @@ export const createPendingCancha = async (formData: Cancha) => {
     data.append('maps_location', formData.maps_location);
     data.append('phone', formData.phone as unknown as string);
     data.append('image', formData.image as unknown as string);
-    const res = await fetch(`${process.env.serverURI}/pending-canchas`, {
-      method: 'POST',
-      body: data,
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas`,
+      {
+        method: 'POST',
+        body: data,
+      },
+    );
 
     return res;
   } catch (error) {
@@ -53,11 +60,14 @@ export const createPendingCancha = async (formData: Cancha) => {
 
 export const togglePendingCancha = async (id: number, cancha: boolean) => {
   try {
-    const res = await fetch(`${process.env.serverURI}/pending-canchas/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pending: cancha }),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/${id}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pending: cancha }),
+      },
+    );
 
     return res;
   } catch (error) {
@@ -71,7 +81,7 @@ export const togglePendingCancha = async (id: number, cancha: boolean) => {
 export const approveCancha = async (id: number) => {
   try {
     const res = await fetch(
-      `${process.env.serverURI}/pending-canchas/approve-cancha/${id}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/approve-cancha/${id}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -89,9 +99,12 @@ export const approveCancha = async (id: number) => {
 
 export const deleteCancha = async (id: number) => {
   try {
-    const res = await fetch(`${process.env.serverURI}/canchas/${id}`, {
-      method: 'DELETE',
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/canchas/${id}`,
+      {
+        method: 'DELETE',
+      },
+    );
 
     return res;
   } catch (error) {
