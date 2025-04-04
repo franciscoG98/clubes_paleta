@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   env: {
-    serverURI: process.env.BACKEND_URL,
+    NEXT_PUBLIC_SERVER_URI: process.env.BACKEND_URL,
   },
   images: {
     remotePatterns: [
