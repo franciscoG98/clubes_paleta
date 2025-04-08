@@ -5,7 +5,6 @@ import { createPendingCancha } from '@/lib/getClubes';
 import SelectProvince from '@/components/forms/SelectProvince';
 import SelectCity from '@/components/forms/SelectCity';
 import Image from 'next/image';
-// import defaultCanchaImage from '/public/cancha_default.webp';
 import { Cancha, TipoDeCancha } from '@/types/club';
 import { MapPin, Phone, Upload } from 'lucide-react';
 // import { MapPin, Phone, Clock, Upload } from 'lucide-react';
@@ -24,6 +23,7 @@ export default function SumaTuCancha() {
 
   const [formData, setFormData] = useState<Cancha>(initialFormData);
   const [loading, setLoading] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string>('');
 
   // const services = [
   //   { id: 'rental', label: 'Venta de Equipo (pelotas, paletas, protectores)' },
@@ -35,17 +35,11 @@ export default function SumaTuCancha() {
   // ];
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('handleImageChange', e.target.files![0]);
-
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const imageUrl = URL.createObjectURL(file);
-
-      setFormData((prev) => ({ ...prev, image: imageUrl }));
+      setFormData((prev) => ({ ...prev, image: file }));
+      setPreviewImage(URL.createObjectURL(file));
     }
-    // else {
-    //   setFormData((prev) => ({ ...prev, image: defaultCanchaImage }));
-    // }
   };
 
   async function handleSubmit(e: React.FormEvent) {
@@ -288,18 +282,18 @@ export default function SumaTuCancha() {
               />
             </div>
 
-            {formData.image && (
+            {previewImage && (
               <div className="mx-auto flex flex-col">
                 <div className="group relative aspect-square w-72">
                   <Image
-                    src={formData.image}
-                    alt="imagen de cancha a subir"
+                    src={previewImage}
+                    alt="Vista previa de cancha a subir"
                     fill
                     className="rounded-2xl object-cover"
                   />
                 </div>
                 <h4 className="my-3 text-center text-sm font-medium">
-                  Vista previa
+                  Vista previa de cancha a subir
                 </h4>
               </div>
             )}

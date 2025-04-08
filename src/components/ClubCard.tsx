@@ -22,10 +22,8 @@ const ClubCard = ({
 
       <Image
         aria-hidden
-        // src={'/cancha_default.webp'}
-        // src={`${process.env.serverURI}/uploads/${image}`}
         src={
-          image !== '/uploads/cancha_default.webp'
+          typeof image === 'string' && image !== '/uploads/cancha_default.webp'
             ? image
             : '/cancha_default.webp'
         }

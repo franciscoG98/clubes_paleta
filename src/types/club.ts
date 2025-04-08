@@ -1,4 +1,4 @@
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+// import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 export enum TipoDeCancha {
   Trinquete = 'Trinquete',
@@ -15,5 +15,5 @@ export type Cancha = {
   maps_location: string;
   type: TipoDeCancha;
   phone: number;
-  image: string | StaticImport;
+  image: string | File;
 };
