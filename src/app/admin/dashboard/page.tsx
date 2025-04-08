@@ -20,6 +20,8 @@ export default function ApprovedCanchasPage() {
     deleteCancha(id);
   };
 
+  console.log('clubes:', clubes);
+
   return (
     <main className="mx-auto flex flex-col items-center justify-center gap-6">
       <h1 className="text-3xl font-bold">Admin Dashboard</h1>
@@ -56,6 +58,12 @@ export default function ApprovedCanchasPage() {
                 scope="col"
                 className="border-collapse border-x-2 border-neutral-100 p-4 text-start"
               >
+                Imagen
+              </th>
+              <th
+                scope="col"
+                className="border-collapse border-x-2 border-neutral-100 p-4 text-start"
+              >
                 Editar
               </th>
               <th
@@ -81,6 +89,10 @@ export default function ApprovedCanchasPage() {
                 </td>
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   {c.type}
+                </td>
+                <td className="border-collapse border-l-2 border-neutral-300 p-4">
+                  aa
+                  {/* {c.image} */}
                 </td>
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   {/* TODO edit action */}

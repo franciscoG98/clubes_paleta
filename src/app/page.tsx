@@ -74,7 +74,7 @@ export default function Home() {
         <Slider />
 
         {clubes && clubes.length > 0 ? (
-          <section className="flex flex-wrap justify-between gap-12">
+          <section className="flex flex-wrap items-center justify-center gap-8">
             {clubes.map((cancha) => (
               <ClubCard
                 key={cancha.id}
