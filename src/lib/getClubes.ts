@@ -40,11 +40,7 @@ export const createPendingCancha = async (formData: Cancha) => {
     data.append('type', formData.type);
     data.append('maps_location', formData.maps_location);
     data.append('phone', formData.phone as unknown as string);
-    // data.append('image', formData.image as unknown as string);
-
-    if (formData.image instanceof File) {
-      data.append('image', formData.image);
-    }
+    data.append('image', formData.image);
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas`,
