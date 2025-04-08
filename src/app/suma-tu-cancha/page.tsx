@@ -5,7 +5,7 @@ import { createPendingCancha } from '@/lib/getClubes';
 import SelectProvince from '@/components/forms/SelectProvince';
 import SelectCity from '@/components/forms/SelectCity';
 import Image from 'next/image';
-import defaultCanchaImage from '/public/cancha_default.webp';
+// import defaultCanchaImage from '/public/cancha_default.webp';
 import { Cancha, TipoDeCancha } from '@/types/club';
 import { MapPin, Phone, Upload } from 'lucide-react';
 // import { MapPin, Phone, Clock, Upload } from 'lucide-react';
