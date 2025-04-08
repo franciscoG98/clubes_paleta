@@ -11,15 +11,24 @@ const ClubCard = ({
   phone,
   image,
 }: Cancha) => {
+  console.log('image', image);
+
   return (
     // TODO: sizes (height) and rounded
     <div className="h-[520px] w-[320px] rounded-xl border border-slate-400">
       <span className="absolute ml-2 mt-2 w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
         {type}
       </span>
+
       <Image
         aria-hidden
-        src={`${process.env.serverURI}/uploads/${image}`}
+        // src={'/cancha_default.webp'}
+        // src={`${process.env.serverURI}/uploads/${image}`}
+        src={
+          image !== '/uploads/cancha_default.webp'
+            ? image
+            : '/cancha_default.webp'
+        }
         alt={`Cancha de ${club}, ${city}`}
         className="h-[203px] w-full rounded-t-xl sm:h-[240px]"
         width={320}

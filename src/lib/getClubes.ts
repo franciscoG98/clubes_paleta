@@ -1,8 +1,6 @@
 import { Cancha } from '@/types/club';
 import { NextResponse } from 'next/server';
 
-console.log('Server URI:', process.env.NEXT_PUBLIC_SERVER_URI);
-
 export const getCanchas = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/canchas`);

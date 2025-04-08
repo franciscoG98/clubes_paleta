@@ -19,7 +19,7 @@ export default function SumaTuCancha() {
     type: 'Trinquete' as TipoDeCancha,
     maps_location: '',
     phone: 0,
-    image: defaultCanchaImage,
+    image: '',
   };
 
   const [formData, setFormData] = useState<Cancha>(initialFormData);
@@ -35,12 +35,17 @@ export default function SumaTuCancha() {
   // ];
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('handleImageChange', e.target.files![0]);
+
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       const imageUrl = URL.createObjectURL(file);
 
       setFormData((prev) => ({ ...prev, image: imageUrl }));
     }
+    // else {
+    //   setFormData((prev) => ({ ...prev, image: defaultCanchaImage }));
+    // }
   };
 
   async function handleSubmit(e: React.FormEvent) {
@@ -163,6 +168,21 @@ export default function SumaTuCancha() {
           </header>
 
           <section className="space-y-4">
+            <fieldset>
+              <label className="font-semibold">Dirección</label>
+              <input
+                type="text"
+                className="w-full rounded-md"
+                placeholder="Ubicacion en Maps"
+                value={formData.maps_location}
+                name="maps_location"
+                onChange={(e) =>
+                  setFormData({ ...formData, maps_location: e.target.value })
+                }
+                required
+              />
+            </fieldset>
+
             <fieldset>
               <label className="font-semibold">Teléfono</label>
               {/* TODO type phone length etc */}
