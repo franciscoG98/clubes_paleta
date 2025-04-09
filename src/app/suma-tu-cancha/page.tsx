@@ -18,7 +18,7 @@ export default function SumaTuCancha() {
     type: 'Trinquete' as TipoDeCancha,
     maps_location: '',
     phone: 0,
-    image: '',
+    image: null as File | null | string,
   };
 
   const [formData, setFormData] = useState<Cancha>(initialFormData);
@@ -50,7 +50,7 @@ export default function SumaTuCancha() {
 
     if (res!.ok) {
       toast.success('Cancha creada con éxito!', {
-        duration: 4000,
+        duration: 2500,
         progress: true,
         position: 'top-center',
         transition: 'bottomToTopBounce',

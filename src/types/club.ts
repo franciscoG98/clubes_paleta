@@ -15,5 +15,5 @@ export type Cancha = {
   maps_location: string;
   type: TipoDeCancha;
   phone: number;
-  image: string | File;
+  image: string | File | null;
 };

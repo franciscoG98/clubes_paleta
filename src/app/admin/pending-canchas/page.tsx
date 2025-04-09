@@ -27,7 +27,7 @@ export default function PendingCanchasPage() {
 
     if (res?.ok && res2?.ok) {
       toast.success('Cancha Aprobada, dale masa nomas vieja!', {
-        duration: 4000,
+        duration: 2500,
         progress: true,
         position: 'top-center',
         transition: 'bottomToTopBounce',
