@@ -44,25 +44,27 @@ de como guardar la variable de entorno para google sheets
 ## TODO:
 
 ### Pendiente:
-- [ ] imagenes
 - [ ] agregar el link de las que tienen pagina
 - [ ] recopilar canchas + cargar excel en la db
 - [ ] SEO trafico etc...
 - [ ] refactor club card
-    - [ ] default imagen
     - [ ] convertir direccion en link de maps
 - [ ] admin
-    - [ ] decline canchas (admin/pending canchas)
     - [ ] mejorar seguridad de login (2 factor de autenticaicon o verificar mail y contraseña u otp...)
 - [ ] handle images upload
     - [ ] restringir el tamaño o ratio de la imagen / ver post de linkedin / solucionar warning de imagenes por resize
     - [ ] dar la opcion de recortarla (?)
-    - [ ] preview de la imagen (?)
-- [ ] mapa de canchas (como???????)
+- [ ] mapa de canchas
 - [ ] clean code
     - [ ] todos funciones o todos arrow funtions
     - [ ] ver que esten bien usados los use client o use server
     - [ ] separar bien la logica dumb and smart components
+- [ ] Acerca de
+    - [ ] Brindar feedback (telegram? mail?)
+    - [ ] Compartir con amigos
+- [ ] Footer contacto
+    - [ ] redes??
+    - [ ] email??
 - [ ] 
 
 

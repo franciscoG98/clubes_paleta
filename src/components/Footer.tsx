@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -10,14 +11,21 @@ const Footer = () => {
               href="/"
               className="mb-4 flex items-center gap-2 text-xl font-bold hover:underline"
             >
+              <Image
+                src={'/main_logo.webp'}
+                alt="Logo de Pelota a paleta"
+                className="relative m-4 flex"
+                height={120}
+                width={120}
+              />
               Canchas de Paleta
             </Link>
-            <p className="mb-4 text-sm text-gray-600">
+            <p className="mb-4 ml-8 text-gray-600">
               La plataforma más completa para encontrar canchas de pelota a
               paleta en todo el país.
             </p>
           </div>
-          <div>
+          <div className="ml-16 mt-16">
             <h3 className="mb-4 font-medium">Enlaces</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -55,17 +63,15 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* TODO Email */}
-          <div>
+          {/* TODO rrss */}
+          {/* <div>
             <h3 className="mb-4 font-medium">Contacto</h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>Email: contacto@canchasdepaleta.com</li>
               <li>Seguinos en redes sociales</li>
             </ul>
 
-            {/* social media */}
             <div className="mt-4 flex gap-4">
-              {/* TODO instagram */}
               <Link
                 href="#"
                 className="text-gray-600 transition-colors hover:text-green-600 hover:underline"
@@ -87,7 +93,6 @@ const Footer = () => {
                 </svg>
               </Link>
 
-              {/* TODO facebook */}
               <Link
                 href="#"
                 className="text-gray-600 transition-colors hover:text-green-600 hover:underline"
@@ -107,7 +112,6 @@ const Footer = () => {
                 </svg>
               </Link>
 
-              {/* TODO twitter */}
               <Link
                 href="#"
                 className="text-gray-600 transition-colors hover:text-green-600 hover:underline"
@@ -127,8 +131,10 @@ const Footer = () => {
                 </svg>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
+
+        {/* TODO: queres poner publicidad??? */}
 
         <div className="mt-8 border-t border-gray-200 pt-6 text-center text-sm text-gray-600">
           <p>

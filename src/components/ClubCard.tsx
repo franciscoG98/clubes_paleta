@@ -14,8 +14,7 @@ const ClubCard = ({
   console.log('image', image);
 
   return (
-    // TODO: sizes (height) and rounded
-    <div className="h-[520px] w-[320px] rounded-xl border border-slate-400">
+    <div className="h-[520px] w-[320px] overflow-hidden rounded-xl border border-slate-400">
       <span className="absolute ml-2 mt-2 w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
         {type}
       </span>

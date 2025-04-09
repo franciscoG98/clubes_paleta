@@ -262,7 +262,6 @@ export default function SumaTuCancha() {
         </article> */}
 
         {/* Subir imágenes */}
-        {/* TODO remove image btn */}
         <article className="m-4 w-full rounded-xl border-2 p-4">
           <header>
             <h3 className="my-2 flex items-center gap-2 text-xl font-semibold">
@@ -270,8 +269,8 @@ export default function SumaTuCancha() {
               Foto de la cancha
             </h3>
           </header>
-          <div className="flex">
-            <div className="relative flex w-1/2 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center transition-colors hover:bg-gray-50">
+          <div className="mt-8 flex justify-around">
+            <div className="relative flex size-72 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center transition-colors hover:bg-gray-50">
               <Upload className="mb-2 size-8 text-gray-400" />
               <button type="button">Seleccionar archivos</button>
               <input
@@ -283,7 +282,7 @@ export default function SumaTuCancha() {
             </div>
 
             {previewImage && (
-              <div className="mx-auto flex flex-col">
+              <div className="flex flex-col">
                 <div className="group relative aspect-square w-72">
                   <Image
                     src={previewImage}

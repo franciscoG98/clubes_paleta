@@ -61,6 +61,7 @@ export const createPendingCancha = async (formData: Cancha) => {
   }
 };
 
+// TODO: is necessary toggle pending cancha?
 export const togglePendingCancha = async (id: number, cancha: boolean) => {
   try {
     const res = await fetch(
@@ -87,6 +88,25 @@ export const approveCancha = async (id: number) => {
       `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/approve-cancha/${id}`,
       {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
+
+    return res;
+  } catch (error) {
+    NextResponse.json(
+      { success: false, error: `Error en el servidor: ${error}` },
+      { status: 500 },
+    );
+  }
+};
+
+export const rejectCancha = async (id: number) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/${id}`,
+      {
+        method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       },
     );

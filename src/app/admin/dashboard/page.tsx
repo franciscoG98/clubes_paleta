@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import { deleteCancha, getCanchas } from '@/lib/getClubes';
 import { Cancha } from '@/types/club';
-import { MdEdit, MdDelete } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
+// import { MdEdit, MdDelete } from 'react-icons/md';
 
 export default function ApprovedCanchasPage() {
   const [clubes, setClubes] = useState<Cancha[]>([]);
@@ -14,13 +15,11 @@ export default function ApprovedCanchasPage() {
         setClubes(res);
       })
       .catch((err) => console.log('Error:', err));
-  }, []);
+  }, [clubes]);
 
   const handleDelete = (id: number) => {
     deleteCancha(id);
   };
-
-  console.log('clubes:', clubes);
 
   return (
     <main className="mx-auto flex flex-col items-center justify-center gap-6">
@@ -54,18 +53,12 @@ export default function ApprovedCanchasPage() {
               >
                 Tipo
               </th>
-              <th
-                scope="col"
-                className="border-collapse border-x-2 border-neutral-100 p-4 text-start"
-              >
-                Imagen
-              </th>
-              <th
+              {/* <th
                 scope="col"
                 className="border-collapse border-x-2 border-neutral-100 p-4 text-start"
               >
                 Editar
-              </th>
+              </th> */}
               <th
                 scope="col"
                 className="border-collapse border-l-2 border-neutral-100 p-4 text-start"
@@ -90,16 +83,12 @@ export default function ApprovedCanchasPage() {
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   {c.type}
                 </td>
-                <td className="border-collapse border-l-2 border-neutral-300 p-4">
-                  aa
-                  {/* {c.image} */}
-                </td>
-                <td className="border-collapse border-l-2 border-neutral-300 p-4">
-                  {/* TODO edit action */}
+                {/* TODO edit action */}
+                {/* <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   <button className="flex items-center justify-between hover:text-green-800 hover:underline">
                     <MdEdit color="green" /> Editar
                   </button>
-                </td>
+                </td> */}
                 <td className="border-collapse border-l-2 border-neutral-300 p-4">
                   {/* TODO check onClick */}
                   <button
