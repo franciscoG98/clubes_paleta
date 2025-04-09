@@ -1,55 +1,39 @@
 import Link from 'next/link';
-// import Image from 'next/image';
 
 import {
   MapPin,
-  Share2,
+  // Share2,
   Coffee,
-  MessageSquare,
+  // MessageSquare,
   Heart,
-  Instagram,
-  Twitter,
-  Facebook,
+  // Instagram,
+  // Twitter,
+  // Facebook,
   ArrowRight,
 } from 'lucide-react';
 
-// TODO: metele diseño hijo de puta
 export default function AcercaDePage() {
   return (
     <main className="mx-12 flex flex-col items-center md:mx-auto md:w-3/4">
       {/* Hero Section */}
-      <div className="relative mb-16 overflow-hidden rounded-xl">
-        {/* TODO image or color? */}
-        {/* <div className="absolute inset-0 z-10 bg-gradient-to-r from-green-900/90 to-emerald-800/80" />
-        <Image
-          src="/placeholder.svg?height=400&width=1200"
-          width={1200}
-          height={400}
-          alt=""
-          className="h-[400px] w-full object-cover"
-        /> */}
-        {/* <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center"> */}
+      <div className="relative mb-16 overflow-hidden rounded-xl bg-gradient-to-r from-green-900/90 to-emerald-800/80 p-8 text-white">
         <div className="flex flex-col items-center justify-center p-6 text-center">
           <h1 className="mb-4 text-2xl font-bold  md:text-5xl">
             Sumate a nuestra comunidad y ayudanos a crecer
           </h1>
           <p className="max-w-2xl text-lg">
-            Juntos podemos crear la red más completa de canchas deportivas. Tu
+            Juntos podemos crear la red más completa de canchas de paleta. Tu
             participación hace la diferencia para que más personas puedan
-            disfrutar del deporte.
+            disfrutar y conocer el deporte.
           </p>
         </div>
       </div>
 
       {/* Formas de contribuir */}
-      <div className="mb-16 w-full">
-        <div className="mb-10 text-center">
-          <h2 className="mb-3 text-3xl font-bold">Formas de contribuir</h2>
-          <p className="mx-auto max-w-2xl">
-            Hay muchas maneras de ayudar a que nuestra plataforma crezca. Elegí
-            la que más te guste.
-          </p>
-        </div>
+      <div className="w-full">
+        <h2 className="mb-8 text-center text-3xl font-bold">
+          Formas de contribuir
+        </h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* Sugerir nuevas canchas */}
@@ -81,7 +65,8 @@ export default function AcercaDePage() {
           </article>
 
           {/* Compartir con amigos */}
-          <article className="rounded-xl border border-neutral-300 p-4 transition-all duration-500 hover:shadow-lg">
+          {/* TODO make links to share in social media*/}
+          {/* <article className="rounded-xl border border-neutral-300 p-4 transition-all duration-500 hover:shadow-lg">
             <header className="pb-4">
               <div className="mb-4 flex size-12 items-center justify-center rounded-full bg-blue-100">
                 <Share2 className="size-6 text-blue-600" />
@@ -96,7 +81,6 @@ export default function AcercaDePage() {
               </p>
             </div>
             <div>
-              {/* TODO make links to share in social media*/}
               <div className="flex w-full justify-center gap-4">
                 <button className="rounded-full bg-blue-50 p-4 text-blue-600 transition-all duration-500 hover:bg-blue-200">
                   <Facebook className="size-12" />
@@ -109,11 +93,11 @@ export default function AcercaDePage() {
                 </button>
               </div>
             </div>
-          </article>
+          </article> */}
 
           {/* TODO dar opcion de mandar feedback */}
           {/* Brindar soporte o feedback */}
-          <article className="rounded-xl border border-neutral-300 p-4 transition-all duration-500 hover:shadow-lg">
+          {/* <article className="rounded-xl border border-neutral-300 p-4 transition-all duration-500 hover:shadow-lg">
             <header className="pb-4">
               <div className="mb-4 flex size-12 items-center justify-center rounded-full bg-amber-100">
                 <MessageSquare className="size-6 text-amber-600" />
@@ -135,7 +119,7 @@ export default function AcercaDePage() {
                 </span>
               </button>
             </div>
-          </article>
+          </article> */}
 
           {/* Colaborar con el proyecto */}
           <article className="rounded-xl border border-neutral-300 p-4 transition-all duration-500 hover:shadow-lg">

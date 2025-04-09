@@ -5,6 +5,7 @@ import {
   getPendingCanchas,
   togglePendingCancha,
   approveCancha,
+  rejectCancha,
 } from '@/lib/getClubes';
 import { Cancha } from '@/types/club';
 import { toast } from 'nextjs-toast-notify';
@@ -22,11 +23,31 @@ export default function PendingCanchasPage() {
   }, []);
 
   async function handleApprove(id: number) {
+    // TODO: is necessary toogle pending cancha?
     const res = await togglePendingCancha(id, false);
     const res2 = await approveCancha(id);
 
     if (res?.ok && res2?.ok) {
-      toast.success('Cancha Aprobada, dale masa nomas vieja!', {
+      toast.success('Cancha Aprobada exitosamente!', {
+        duration: 2500,
+        progress: true,
+        position: 'top-center',
+        transition: 'bottomToTopBounce',
+        icon: '',
+        sound: false,
+      });
+    }
+
+    setCanchasToReview(
+      canchasToReview.filter((canchaToReview) => canchaToReview.id !== id),
+    );
+  }
+
+  async function handleReject(id: number) {
+    const res = await rejectCancha(id);
+
+    if (res?.ok) {
+      toast.success('Cancha Rechazada exitosamente!', {
         duration: 2500,
         progress: true,
         position: 'top-center',
@@ -62,9 +83,11 @@ export default function PendingCanchasPage() {
                   image={canchaToReview.image}
                 />
 
-                {/* TODO: reject */}
-                <button className="absolute bottom-0 left-0 w-1/2 rounded-bl-md bg-red-500 p-2 font-semibold text-white">
-                  no anda
+                <button
+                  className="absolute bottom-0 left-0 w-1/2 rounded-bl-md bg-red-500 p-2 font-semibold text-white"
+                  onClick={() => handleReject(canchaToReview.id as number)}
+                >
+                  ❌ Rechazar
                 </button>
 
                 <button
