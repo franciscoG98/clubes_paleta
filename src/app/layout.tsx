@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import { auth } from '@/auth';
 import localFont from 'next/font/local';
+import AdminNavbar from '@/components/AdminNavbar';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import './globals.css';
 
 const geistSans = localFont({
@@ -49,18 +52,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="es">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        {session?.user ? <AdminNavbar /> : <Navbar />}
+
+        <div className="min-h-screen bg-neutral-100">{children}</div>
+        <Footer />
       </body>
     </html>
   );
