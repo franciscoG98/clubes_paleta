@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         port: '3001',
       },
+      {
+        protocol: 'https',
+        hostname: 'clubes-paleta-back.onrender.com',
+      },
     ],
   },
 };

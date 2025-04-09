@@ -22,7 +22,13 @@ const ClubCard = ({
 
       <Image
         aria-hidden
-        src={typeof image === 'string' ? image : '/cancha_default.webp'}
+        src={
+          typeof image === 'string'
+            ? image.startsWith('http')
+              ? image
+              : `${process.env.NEXT_PUBLIC_SERVER_URI}${image}`
+            : `${process.env.NEXT_PUBLIC_SERVER_URI}/uploads/cancha_default.webp`
+        }
         alt={`Cancha de ${club}, ${city}`}
         className="h-[203px] w-full rounded-t-xl sm:h-[240px]"
         width={320}
