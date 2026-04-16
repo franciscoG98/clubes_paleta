@@ -18,6 +18,7 @@ export default function SumaTuCancha() {
     maps_location: '',
     phone: 0,
     image: null as File | null | string,
+    address: '',
   };
 
   const [formData, setFormData] = useState<Cancha>(initialFormData);
@@ -34,6 +35,8 @@ export default function SumaTuCancha() {
   }
   if (!formData.phone || String(formData.phone).replace(/\D/g, '').length < 8)
     errors.phone = 'Ingresá un teléfono válido (mínimo 8 dígitos).';
+  if (!formData.address.trim() || formData.address.trim().length < 3)
+    errors.address = 'La dirección debe tener al menos 3 caracteres.';
 
   const touch = (field: string) =>
     setTouched((prev) => ({ ...prev, [field]: true }));
@@ -58,6 +61,7 @@ export default function SumaTuCancha() {
         city: true,
         maps_location: true,
         phone: true,
+        address: true,
       });
       return;
     }
@@ -203,8 +207,30 @@ export default function SumaTuCancha() {
               </label>
               <input
                 type="text"
+                className={`w-full rounded-md ${touched.address && errors.address ? 'border-red-500 focus:ring-red-300' : ''}`}
+                placeholder="Ej: Mitre 123"
+                value={formData.address}
+                name="address"
+                onBlur={() => touch('address')}
+                onChange={(e) =>
+                  setFormData({ ...formData, address: e.target.value })
+                }
+              />
+              {touched.address && errors.address && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.address}
+                </p>
+              )}
+            </fieldset>
+
+            <fieldset>
+              <label className="font-semibold">
+                Ubicación en Google Maps <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
                 className={`w-full rounded-md ${touched.maps_location && errors.maps_location ? 'border-red-500 focus:ring-red-300' : ''}`}
-                placeholder="Ej: Av. San Martín 1234"
+                placeholder="Ej: https://maps.google.com/..."
                 value={formData.maps_location}
                 name="maps_location"
                 onBlur={() => touch('maps_location')}

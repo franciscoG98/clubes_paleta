@@ -83,6 +83,7 @@ export default function Home() {
                 state={cancha.state}
                 maps_location={cancha.maps_location}
                 type={cancha.type}
+                address={cancha.address}
                 phone={cancha.phone}
                 image={cancha.image}
               />
