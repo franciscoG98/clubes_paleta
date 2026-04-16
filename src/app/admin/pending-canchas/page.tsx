@@ -79,6 +79,7 @@ export default function PendingCanchasPage() {
                   state={canchaToReview.state}
                   maps_location={canchaToReview.maps_location}
                   type={canchaToReview.type}
+                  address={canchaToReview.address}
                   phone={canchaToReview.phone}
                   image={canchaToReview.image}
                 />

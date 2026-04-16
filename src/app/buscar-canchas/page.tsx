@@ -151,6 +151,7 @@ export default function BuscarCanchas() {
               club={c.club}
               city={c.city}
               state={c.state}
+              address={c.address}
               maps_location={c.maps_location}
               type={c.type}
               phone={c.phone}
