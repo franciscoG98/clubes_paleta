@@ -1,9 +1,9 @@
 // import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 export enum TipoDeCancha {
-  Trinquete = 'Trinquete',
-  Frontón = 'Frontón',
-  Cajón = 'Cajón',
+  Trinquete = "Trinquete",
+  Frontón = "Frontón",
+  Cajón = "Cajón",
 }
 
 export type Cancha = {

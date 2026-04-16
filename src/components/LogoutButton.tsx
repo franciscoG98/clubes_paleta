@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { logout } from '@/lib/actions/auth';
+import { logout } from "@/lib/actions/auth";
 
 const LogoutButton = () => {
   return (

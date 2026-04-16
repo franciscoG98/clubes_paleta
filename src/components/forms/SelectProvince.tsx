@@ -1,4 +1,4 @@
-import { locations } from '../../app/data/locations';
+import { locations } from "../../app/data/locations";
 
 type Props = {
   handleProvince: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -13,7 +13,7 @@ const SelectProvince = ({ handleProvince, onBlur, error }: Props) => {
         Provincia <span className="text-red-500">*</span>
       </label>
       <select
-        className={`w-full rounded-md border p-2 ${error ? 'border-red-500 focus:ring-red-300' : ''}`}
+        className={`w-full rounded-md border p-2 ${error ? "border-red-500 focus:ring-red-300" : ""}`}
         onChange={handleProvince}
         onBlur={onBlur}
       >

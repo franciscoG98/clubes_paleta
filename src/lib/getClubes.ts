@@ -1,5 +1,5 @@
-import { Cancha } from '@/types/club';
-import { NextResponse } from 'next/server';
+import { Cancha } from "@/types/club";
+import { NextResponse } from "next/server";
 
 export const getCanchas = async () => {
   try {
@@ -34,30 +34,30 @@ export const getPendingCanchas = async () => {
 export const createPendingCancha = async (formData: Cancha) => {
   try {
     const data = new FormData();
-    data.append('club', formData.club);
-    data.append('city', formData.city);
-    data.append('state', formData.state);
-    data.append('type', formData.type);
-    data.append('maps_location', formData.maps_location);
-    data.append('phone', formData.phone as unknown as string);
-    data.append('address', formData.address);
+    data.append("club", formData.club);
+    data.append("city", formData.city);
+    data.append("state", formData.state);
+    data.append("type", formData.type);
+    data.append("maps_location", formData.maps_location);
+    data.append("phone", formData.phone as unknown as string);
+    data.append("address", formData.address);
 
     // Only append image if it exists and is a File object
     if (formData.image && formData.image instanceof File) {
-      data.append('image', formData.image);
+      data.append("image", formData.image);
     }
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas`,
       {
-        method: 'POST',
+        method: "POST",
         body: data,
       },
     );
 
     return res;
   } catch (error) {
-    console.error('Error en el servidor:', error);
+    console.error("Error en el servidor:", error);
     return { ok: false };
   }
 };
@@ -68,8 +68,8 @@ export const togglePendingCancha = async (id: number, cancha: boolean) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/${id}`,
       {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pending: cancha }),
       },
     );
@@ -88,8 +88,8 @@ export const approveCancha = async (id: number) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/approve-cancha/${id}`,
       {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
       },
     );
 
@@ -107,8 +107,8 @@ export const rejectCancha = async (id: number) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/pending-canchas/${id}`,
       {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
       },
     );
 
@@ -126,13 +126,13 @@ export const deleteCancha = async (id: number) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/canchas/${id}`,
       {
-        method: 'DELETE',
+        method: "DELETE",
       },
     );
 
     return res;
   } catch (error) {
-    console.error('Error en el servidor:', error);
+    console.error("Error en el servidor:", error);
     return { ok: false };
   }
 };
@@ -142,15 +142,15 @@ export const updateCancha = async (id: number, data: Partial<Cancha>) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URI}/canchas/${id}`,
       {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       },
     );
 
     return res;
   } catch (error) {
-    console.error('Error en el servidor:', error);
+    console.error("Error en el servidor:", error);
     return { ok: false };
   }
 };

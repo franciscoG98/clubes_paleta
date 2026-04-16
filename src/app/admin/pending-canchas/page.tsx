@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   getPendingCanchas,
   togglePendingCancha,
   approveCancha,
   rejectCancha,
-} from '@/lib/getClubes';
-import { Cancha } from '@/types/club';
-import { toast } from 'nextjs-toast-notify';
-import ClubCard from '@/components/ClubCard';
+} from "@/lib/getClubes";
+import { Cancha } from "@/types/club";
+import { toast } from "nextjs-toast-notify";
+import ClubCard from "@/components/ClubCard";
 
 export default function PendingCanchasPage() {
   const [canchasToReview, setCanchasToReview] = useState<Cancha[]>([]);
@@ -19,7 +19,7 @@ export default function PendingCanchasPage() {
       .then((res) => {
         setCanchasToReview(res.filter((cancha: Cancha) => cancha.pending));
       })
-      .catch((err) => console.log('Error:', err));
+      .catch((err) => console.log("Error:", err));
   }, []);
 
   async function handleApprove(id: number) {
@@ -28,12 +28,12 @@ export default function PendingCanchasPage() {
     const res2 = await approveCancha(id);
 
     if (res?.ok && res2?.ok) {
-      toast.success('Cancha Aprobada exitosamente!', {
+      toast.success("Cancha Aprobada exitosamente!", {
         duration: 2500,
         progress: true,
-        position: 'top-center',
-        transition: 'bottomToTopBounce',
-        icon: '',
+        position: "top-center",
+        transition: "bottomToTopBounce",
+        icon: "",
         sound: false,
       });
     }
@@ -47,12 +47,12 @@ export default function PendingCanchasPage() {
     const res = await rejectCancha(id);
 
     if (res?.ok) {
-      toast.success('Cancha Rechazada exitosamente!', {
+      toast.success("Cancha Rechazada exitosamente!", {
         duration: 2500,
         progress: true,
-        position: 'top-center',
-        transition: 'bottomToTopBounce',
-        icon: '',
+        position: "top-center",
+        transition: "bottomToTopBounce",
+        icon: "",
         sound: false,
       });
     }
@@ -99,7 +99,7 @@ export default function PendingCanchasPage() {
                 </button>
               </article>
             ))
-          : 'No hay canchas para aprobar'}
+          : "No hay canchas para aprobar"}
       </section>
     </main>
   );

@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { auth } from '@/auth';
-import LoginButton from '@/components/LoginButton';
-import LogoutButton from '@/components/LogoutButton';
+import { auth } from "@/auth";
+import LoginButton from "@/components/LoginButton";
+import LogoutButton from "@/components/LogoutButton";
 
 const AdminPage = async () => {
   const session = await auth();

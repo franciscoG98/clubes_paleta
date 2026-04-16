@@ -1,4 +1,4 @@
-import { locations } from '../../app/data/locations';
+import { locations } from "../../app/data/locations";
 
 type Props = {
   selectedProvince: string;
@@ -17,7 +17,7 @@ const SelectCity = ({ selectedProvince, handleCity, onBlur, error }: Props) => {
         Ciudad <span className="text-red-500">*</span>
       </label>
       <select
-        className={`w-full rounded-md border p-2 ${error ? 'border-red-500 focus:ring-red-300' : ''}`}
+        className={`w-full rounded-md border p-2 ${error ? "border-red-500 focus:ring-red-300" : ""}`}
         onChange={handleCity}
         onBlur={onBlur}
         disabled={!selectedProvince}

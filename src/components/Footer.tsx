@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
               className="mb-4 flex items-center gap-2 text-xl font-bold hover:underline"
             >
               <Image
-                src={'/main_logo.webp'}
+                src={"/main_logo.webp"}
                 alt="Logo de Pelota a paleta"
                 className="relative m-4 flex"
                 height={120}

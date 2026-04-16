@@ -1,4 +1,4 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   env: {
@@ -7,13 +7,13 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3001',
+        protocol: "http",
+        hostname: "localhost",
+        port: "3001",
       },
       {
-        protocol: 'https',
-        hostname: 'clubes-paleta-back.onrender.com',
+        protocol: "https",
+        hostname: "clubes-paleta-back.onrender.com",
       },
     ],
   },

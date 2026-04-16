@@ -1,50 +1,50 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/image';
-import { FaCircleArrowLeft, FaCircleArrowRight } from 'react-icons/fa6';
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
+import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 
 // Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import { Pagination } from 'swiper/modules';
-import { Navigation } from 'swiper/modules';
+import { Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 const images = [
   {
-    src: '/banner/01_canchas_paleta-sardina-martiren.webp',
+    src: "/banner/01_canchas_paleta-sardina-martiren.webp",
     id: 1,
     alt: 'Gabriel "Sardina" Martirén',
   },
   {
-    src: '/banner/02_canchas_paleta-vaca.webp',
+    src: "/banner/02_canchas_paleta-vaca.webp",
     id: 2,
-    alt: 'Paleta con hueso de paleta de vaca',
+    alt: "Paleta con hueso de paleta de vaca",
   },
   {
-    src: '/banner/03_canchas_paleta-kerosene.webp',
+    src: "/banner/03_canchas_paleta-kerosene.webp",
     id: 3,
-    alt: 'Las primeras paletas de madera se hicieron con cajones de kerosene',
+    alt: "Las primeras paletas de madera se hicieron con cajones de kerosene",
   },
   {
-    src: '/banner/04_canchas_paleta-madera-cancha-burzaco.webp',
+    src: "/banner/04_canchas_paleta-madera-cancha-burzaco.webp",
     id: 4,
-    alt: 'Cancha de burzaco donde Martirén jugo el primer partido con paleta de madera',
+    alt: "Cancha de burzaco donde Martirén jugo el primer partido con paleta de madera",
   },
   {
-    src: '/banner/05_canchas_Fronton.webp',
+    src: "/banner/05_canchas_Fronton.webp",
     id: 5,
-    alt: 'Frontón, cancha abierta',
+    alt: "Frontón, cancha abierta",
   },
   {
-    src: '/banner/06_canchas_Fronton-36-mts.webp',
+    src: "/banner/06_canchas_Fronton-36-mts.webp",
     id: 6,
-    alt: 'Modelo Fronton 36 mts',
+    alt: "Modelo Fronton 36 mts",
   },
   {
-    src: '/banner/07_canchas_Trinquete.webp',
+    src: "/banner/07_canchas_Trinquete.webp",
     id: 7,
-    alt: 'Modelo Trinquete',
+    alt: "Modelo Trinquete",
   },
 ];
 
@@ -68,8 +68,8 @@ export const Slider = () => {
           },
         }}
         navigation={{
-          prevEl: '.swiper-button-prev',
-          nextEl: '.swiper-button-next',
+          prevEl: ".swiper-button-prev",
+          nextEl: ".swiper-button-next",
         }}
         spaceBetween={30}
         pagination={{

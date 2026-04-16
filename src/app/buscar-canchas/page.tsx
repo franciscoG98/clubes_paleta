@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { getCanchas } from '@/lib/getClubes';
-import ClubCard from '@/components/ClubCard';
-import Spinner from '@/components/Spinner';
-import { Cancha } from '@/types/club';
+import { useEffect, useState } from "react";
+import { getCanchas } from "@/lib/getClubes";
+import ClubCard from "@/components/ClubCard";
+import Spinner from "@/components/Spinner";
+import { Cancha } from "@/types/club";
 
 export default function BuscarCanchas() {
   const [result, setResult] = useState<Cancha[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [provinciaFilter, setProvinciaFilter] = useState('');
+  const [provinciaFilter, setProvinciaFilter] = useState("");
   const [tipoCanchaFilter, setTipoCanchaFilter] = useState<string[]>([]);
   const [provinciaOptions, setProvinciaOptions] = useState<string[]>([]);
 
@@ -45,7 +45,7 @@ export default function BuscarCanchas() {
 
   const filteredClubes = result.filter((club) => {
     const provinciaMatches =
-      provinciaFilter === '' || club.state === provinciaFilter;
+      provinciaFilter === "" || club.state === provinciaFilter;
     const tipoCanchaMatches =
       tipoCanchaFilter.length === 0 || tipoCanchaFilter.includes(club.type);
 
@@ -53,7 +53,7 @@ export default function BuscarCanchas() {
   });
 
   const handleResetFilters = () => {
-    setProvinciaFilter('');
+    setProvinciaFilter("");
     setTipoCanchaFilter([]);
   };
 
@@ -101,7 +101,7 @@ export default function BuscarCanchas() {
                   className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
                   type="checkbox"
                   value="Trinquete"
-                  checked={tipoCanchaFilter.includes('Trinquete')}
+                  checked={tipoCanchaFilter.includes("Trinquete")}
                   onChange={handleTipoCanchaChange}
                 />
                 Trinquete
@@ -112,7 +112,7 @@ export default function BuscarCanchas() {
                   type="checkbox"
                   className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
                   value="Frontón"
-                  checked={tipoCanchaFilter.includes('Frontón')}
+                  checked={tipoCanchaFilter.includes("Frontón")}
                   onChange={handleTipoCanchaChange}
                 />
                 Frontón
@@ -123,7 +123,7 @@ export default function BuscarCanchas() {
                   type="checkbox"
                   className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
                   value="Cajón"
-                  checked={tipoCanchaFilter.includes('Cajón')}
+                  checked={tipoCanchaFilter.includes("Cajón")}
                   onChange={handleTipoCanchaChange}
                 />
                 Cajón

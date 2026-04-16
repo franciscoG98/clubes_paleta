@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { deleteCancha, getCanchas, updateCancha } from '@/lib/getClubes';
-import { Cancha, TipoDeCancha } from '@/types/club';
-import { MdEdit, MdDelete, MdCheck, MdClose } from 'react-icons/md';
-import { toast } from 'nextjs-toast-notify';
+import { useEffect, useState } from "react";
+import { deleteCancha, getCanchas, updateCancha } from "@/lib/getClubes";
+import { Cancha, TipoDeCancha } from "@/types/club";
+import { MdEdit, MdDelete, MdCheck, MdClose } from "react-icons/md";
+import { toast } from "nextjs-toast-notify";
 
 export default function ApprovedCanchasPage() {
   const [clubes, setClubes] = useState<Cancha[]>([]);
@@ -16,7 +16,7 @@ export default function ApprovedCanchasPage() {
       .then((res) => {
         setClubes(res);
       })
-      .catch((err) => console.log('Error:', err));
+      .catch((err) => console.log("Error:", err));
   }, []);
 
   const handleDelete = async (id: number, clubName: string) => {
@@ -30,12 +30,12 @@ export default function ApprovedCanchasPage() {
     const res = await deleteCancha(id);
     if (res.ok) {
       setClubes((prev) => prev.filter((c) => c.id !== id));
-      toast.success('Cancha eliminada', {
+      toast.success("Cancha eliminada", {
         duration: 2000,
         progress: true,
-        position: 'top-center',
-        transition: 'bottomToTopBounce',
-        icon: '',
+        position: "top-center",
+        transition: "bottomToTopBounce",
+        icon: "",
         sound: false,
       });
     }
@@ -64,23 +64,23 @@ export default function ApprovedCanchasPage() {
       setClubes((prev) =>
         prev.map((c) => (c.id === id ? { ...c, ...editData } : c)),
       );
-      toast.success('Cancha actualizada', {
+      toast.success("Cancha actualizada", {
         duration: 2000,
         progress: true,
-        position: 'top-center',
-        transition: 'bottomToTopBounce',
-        icon: '',
+        position: "top-center",
+        transition: "bottomToTopBounce",
+        icon: "",
         sound: false,
       });
       setEditingId(null);
       setEditData({});
     } else {
-      toast.error('Error al actualizar la cancha', {
+      toast.error("Error al actualizar la cancha", {
         duration: 3000,
         progress: true,
-        position: 'top-center',
-        transition: 'bottomToTopBounce',
-        icon: '',
+        position: "top-center",
+        transition: "bottomToTopBounce",
+        icon: "",
         sound: false,
       });
     }
@@ -122,7 +122,7 @@ export default function ApprovedCanchasPage() {
                   <td className="border-collapse border-r-2 border-neutral-300 p-2">
                     <input
                       className="w-full rounded border p-1 text-sm"
-                      value={editData.club ?? ''}
+                      value={editData.club ?? ""}
                       onChange={(e) =>
                         setEditData((prev) => ({
                           ...prev,
@@ -134,7 +134,7 @@ export default function ApprovedCanchasPage() {
                   <td className="border-collapse border-x-2 border-neutral-300 p-2">
                     <input
                       className="w-full rounded border p-1 text-sm"
-                      value={editData.state ?? ''}
+                      value={editData.state ?? ""}
                       onChange={(e) =>
                         setEditData((prev) => ({
                           ...prev,
@@ -146,7 +146,7 @@ export default function ApprovedCanchasPage() {
                   <td className="border-collapse border-x-2 border-neutral-300 p-2">
                     <input
                       className="w-full rounded border p-1 text-sm"
-                      value={editData.city ?? ''}
+                      value={editData.city ?? ""}
                       onChange={(e) =>
                         setEditData((prev) => ({
                           ...prev,
@@ -158,7 +158,7 @@ export default function ApprovedCanchasPage() {
                   <td className="border-collapse border-x-2 border-neutral-300 p-2">
                     <select
                       className="w-full rounded border p-1 text-sm"
-                      value={editData.type ?? ''}
+                      value={editData.type ?? ""}
                       onChange={(e) =>
                         setEditData((prev) => ({
                           ...prev,

@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { Cancha } from '@/types/club';
-import { House, MapPin, Phone } from 'lucide-react';
-import Link from 'next/link';
+import Image from "next/image";
+import { Cancha } from "@/types/club";
+import { House, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 
 // const getMapsUrl = (address: string, city: string, state: string) => {
 //   const query = encodeURIComponent(`${address}, ${city}, ${state}, Argentina`);
@@ -27,8 +27,8 @@ const ClubCard = ({
       <Image
         aria-hidden
         src={
-          typeof image === 'string'
-            ? image.startsWith('http')
+          typeof image === "string"
+            ? image.startsWith("http")
               ? image
               : `${process.env.NEXT_PUBLIC_SERVER_URI}${image}`
             : `${process.env.NEXT_PUBLIC_SERVER_URI}/uploads/cancha_default.webp`
@@ -51,7 +51,7 @@ const ClubCard = ({
       <div className="m-4">
         <p className="flex items-start gap-2 text-gray-600">
           <House className="mt-0.5 size-4 shrink-0" />
-          {address ?? 'Dirección no disponible'}
+          {address ?? "Dirección no disponible"}
         </p>
       </div>
 

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { getCanchas } from '@/lib/getClubes';
-import ClubCard from '@/components/ClubCard';
-import Spinner from '@/components/Spinner';
-import { Slider } from '@/components/Slider';
-import { Cancha } from '@/types/club';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import { getCanchas } from "@/lib/getClubes";
+import ClubCard from "@/components/ClubCard";
+import Spinner from "@/components/Spinner";
+import { Slider } from "@/components/Slider";
+import { Cancha } from "@/types/club";
+import Link from "next/link";
 
-import { MapPin, Search } from 'lucide-react';
+import { MapPin, Search } from "lucide-react";
 
 export default function Home() {
   const [clubes, setClubes] = useState<Cancha[]>([]);
@@ -18,7 +18,7 @@ export default function Home() {
       .then((res) => {
         setClubes(res);
       })
-      .catch((err) => console.log('Error:', err));
+      .catch((err) => console.log("Error:", err));
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 import {
   MapPin,
@@ -10,7 +10,7 @@ import {
   // Twitter,
   // Facebook,
   ArrowRight,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function AcercaDePage() {
   return (
@@ -53,7 +53,7 @@ export default function AcercaDePage() {
             </div>
             <div>
               <Link
-                href={'/suma-tu-cancha'}
+                href={"/suma-tu-cancha"}
                 className="my-4 flex w-fit rounded-xl border-2 border-emerald-700 text-lg font-bold transition-all duration-500 hover:bg-emerald-700 hover:text-white"
               >
                 <span className="flex size-full items-center justify-center px-6 py-4">
