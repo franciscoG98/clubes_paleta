@@ -16,4 +16,5 @@ export type Cancha = {
   type: TipoDeCancha;
   phone: number;
   image: string | File | null;
+  address: string;
 };
