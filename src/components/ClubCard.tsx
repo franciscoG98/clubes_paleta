@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Cancha } from '@/types/club';
-import { MapPin, Phone } from 'lucide-react';
+import { House, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 // const getMapsUrl = (address: string, city: string, state: string) => {
@@ -16,6 +16,7 @@ const ClubCard = ({
   type,
   phone,
   image,
+  address,
 }: Cancha) => {
   return (
     <div className="h-[520px] w-[320px] overflow-hidden rounded-xl border border-slate-400">
@@ -46,6 +47,13 @@ const ClubCard = ({
           {city}, {state}
         </p>
       </header>
+
+      <div className="m-4">
+        <p className="flex items-start gap-2 text-gray-600">
+          <House className="mt-0.5 size-4 shrink-0" />
+          {address ?? 'Dirección no disponible'}
+        </p>
+      </div>
 
       <div className="m-4">
         <Link
