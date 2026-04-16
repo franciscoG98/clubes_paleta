@@ -135,3 +135,21 @@ export const deleteCancha = async (id: number) => {
     return { ok: false };
   }
 };
+
+export const updateCancha = async (id: number, data: Partial<Cancha>) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URI}/canchas/${id}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      },
+    );
+
+    return res;
+  } catch (error) {
+    console.error('Error en el servidor:', error);
+    return { ok: false };
+  }
+};

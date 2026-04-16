@@ -3,19 +3,25 @@ import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://acme.com',
+      url: 'https://clubes-paleta.vercel.app',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://acme.com/buscar-canchas',
+      url: 'https://clubes-paleta.vercel.app/buscar-canchas',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://acme.com/suma-tu-cancha',
+      url: 'https://clubes-paleta.vercel.app/suma-tu-cancha',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: 'https://clubes-paleta.vercel.app/acerca-de',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,

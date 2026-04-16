@@ -7,7 +7,6 @@ import SelectCity from '@/components/forms/SelectCity';
 import Image from 'next/image';
 import { Cancha, TipoDeCancha } from '@/types/club';
 import { MapPin, Phone, Upload } from 'lucide-react';
-// import { MapPin, Phone, Clock, Upload } from 'lucide-react';
 import { toast } from 'nextjs-toast-notify';
 
 export default function SumaTuCancha() {
@@ -24,15 +23,22 @@ export default function SumaTuCancha() {
   const [formData, setFormData] = useState<Cancha>(initialFormData);
   const [loading, setLoading] = useState(false);
   const [previewImage, setPreviewImage] = useState<string>('');
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  // const services = [
-  //   { id: 'rental', label: 'Venta de Equipo (pelotas, paletas, protectores)' },
-  //   { id: 'lockers', label: 'Vestuarios' },
-  //   { id: 'parking', label: 'Estacionamiento' },
-  //   { id: 'bar', label: 'Bar/Cafetería' },
-  //   { id: 'lighting', label: 'Iluminación nocturna' },
-  //   { id: 'coach', label: 'Clases/Escuelita' },
-  // ];
+  const errors: Record<string, string> = {};
+  if (!formData.club.trim()) errors.club = 'El nombre del club es obligatorio.';
+  if (!formData.state) errors.state = 'Seleccioná una provincia.';
+  if (!formData.city) errors.city = 'Seleccioná una ciudad.';
+  if (!formData.maps_location.trim()) {
+    errors.maps_location = 'La dirección es obligatoria.';
+  }
+  if (!formData.phone || String(formData.phone).replace(/\D/g, '').length < 8)
+    errors.phone = 'Ingresá un teléfono válido (mínimo 8 dígitos).';
+
+  const touch = (field: string) =>
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+  const isFormValid = Object.keys(errors).length === 0;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -44,6 +50,18 @@ export default function SumaTuCancha() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (!isFormValid) {
+      setTouched({
+        club: true,
+        state: true,
+        city: true,
+        maps_location: true,
+        phone: true,
+      });
+      return;
+    }
+
     setLoading(true);
 
     const res = await createPendingCancha(formData);
@@ -58,12 +76,21 @@ export default function SumaTuCancha() {
         sound: false,
       });
 
-      setFormData({ ...formData, image: '' });
       setFormData(initialFormData);
-      setLoading(false);
+      setPreviewImage('');
+      setTouched({});
     } else {
-      console.error('Error al crear la cancha');
+      toast.error('Error al crear la cancha. Intentá de nuevo.', {
+        duration: 3000,
+        progress: true,
+        position: 'top-center',
+        transition: 'bottomToTopBounce',
+        icon: '',
+        sound: false,
+      });
     }
+
+    setLoading(false);
   }
 
   return (
@@ -79,7 +106,6 @@ export default function SumaTuCancha() {
         </p>
       </div>
 
-      {/* TODO: add required * and touched properties */}
       <form onSubmit={handleSubmit}>
         {/* Datos básicos */}
         <article className="m-4 w-full rounded-xl border-2 p-4">
@@ -94,25 +120,32 @@ export default function SumaTuCancha() {
           </header>
           <section className="space-y-4">
             <fieldset>
-              <label className="font-semibold">Nombre del Club</label>
+              <label className="font-semibold">
+                Nombre del Club <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
-                className="w-full rounded-md"
+                className={`w-full rounded-md ${touched.club && errors.club ? 'border-red-500 focus:ring-red-300' : ''}`}
                 placeholder="Club"
                 value={formData.club}
                 name="club"
-                required
+                onBlur={() => touch('club')}
                 onChange={(e) =>
                   setFormData({ ...formData, club: e.target.value })
                 }
               />
+              {touched.club && errors.club && (
+                <p className="mt-1 text-sm text-red-500">{errors.club}</p>
+              )}
             </fieldset>
 
             <fieldset>
               <SelectProvince
-                handleProvince={(e) =>
-                  setFormData({ ...formData, state: e.target.value })
-                }
+                handleProvince={(e) => {
+                  setFormData({ ...formData, state: e.target.value, city: '' });
+                }}
+                onBlur={() => touch('state')}
+                error={touched.state ? errors.state : undefined}
               />
             </fieldset>
 
@@ -122,6 +155,8 @@ export default function SumaTuCancha() {
                 handleCity={(e) =>
                   setFormData({ ...formData, city: e.target.value })
                 }
+                onBlur={() => touch('city')}
+                error={touched.city ? errors.city : undefined}
               />
             </fieldset>
 
@@ -163,34 +198,47 @@ export default function SumaTuCancha() {
 
           <section className="space-y-4">
             <fieldset>
-              <label className="font-semibold">Dirección</label>
+              <label className="font-semibold">
+                Dirección <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
-                className="w-full rounded-md"
-                placeholder="Ubicacion en Maps"
+                className={`w-full rounded-md ${touched.maps_location && errors.maps_location ? 'border-red-500 focus:ring-red-300' : ''}`}
+                placeholder="Ej: Av. San Martín 1234"
                 value={formData.maps_location}
                 name="maps_location"
+                onBlur={() => touch('maps_location')}
                 onChange={(e) =>
                   setFormData({ ...formData, maps_location: e.target.value })
                 }
-                required
               />
+              {touched.maps_location && errors.maps_location && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.maps_location}
+                </p>
+              )}
             </fieldset>
 
             <fieldset>
-              <label className="font-semibold">Teléfono</label>
-              {/* TODO type phone length etc */}
+              <label className="font-semibold">
+                Teléfono <span className="text-red-500">*</span>
+              </label>
               <input
-                type="number"
-                className="w-full rounded-md"
-                placeholder="Teléfono ejemplo 110303456"
-                value={formData.phone}
+                type="tel"
+                inputMode="numeric"
+                className={`w-full rounded-md ${touched.phone && errors.phone ? 'border-red-500 focus:ring-red-300' : ''}`}
+                placeholder="Ej: 2944112233"
+                value={formData.phone || ''}
                 name="phone"
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: parseInt(e.target.value) })
-                }
-                required
+                onBlur={() => touch('phone')}
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/\D/g, '');
+                  setFormData({ ...formData, phone: Number(digits) });
+                }}
               />
+              {touched.phone && errors.phone && (
+                <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+              )}
             </fieldset>
 
             {/* TODO create this fields in models, check which is required at least one or phone or social media */}
@@ -302,7 +350,7 @@ export default function SumaTuCancha() {
         <div className="flex justify-center pt-4">
           <button
             type="submit"
-            className="rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 px-8 py-4 text-xl font-semibold text-white hover:from-green-700 hover:to-emerald-600"
+            className="rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 px-8 py-4 text-xl font-semibold text-white hover:from-green-700 hover:to-emerald-600 disabled:cursor-not-allowed disabled:opacity-60"
             disabled={loading}
           >
             {loading ? 'Registrando...' : 'Registrar cancha'}
