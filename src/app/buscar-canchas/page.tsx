@@ -3,18 +3,20 @@
 import { useEffect, useState } from 'react';
 import { getCanchas } from '@/lib/getClubes';
 import ClubCard from '@/components/ClubCard';
+import Spinner from '@/components/Spinner';
 import { Cancha } from '@/types/club';
 
 export default function BuscarCanchas() {
   const [result, setResult] = useState<Cancha[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [provinciaFilter, setProvinciaFilter] = useState('');
   const [tipoCanchaFilter, setTipoCanchaFilter] = useState<string[]>([]);
   const [provinciaOptions, setProvinciaOptions] = useState<string[]>([]);
 
-  // TODO: loading state when lookin diferent of first load
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const clubes = await getCanchas();
 
       setResult(clubes);
@@ -23,6 +25,7 @@ export default function BuscarCanchas() {
         new Set(clubes.map((club: Cancha) => club.state)),
       );
       setProvinciaOptions(provincias as string[]);
+      setLoading(false);
     };
 
     fetchData();
@@ -119,11 +122,11 @@ export default function BuscarCanchas() {
                 <input
                   type="checkbox"
                   className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
-                  value="Otro"
-                  checked={tipoCanchaFilter.includes('Otro')}
+                  value="Cajón"
+                  checked={tipoCanchaFilter.includes('Cajón')}
                   onChange={handleTipoCanchaChange}
                 />
-                Otro
+                Cajón
               </label>
             </div>
           </label>
@@ -139,25 +142,25 @@ export default function BuscarCanchas() {
 
       {/* Result Section */}
       <div className="mb-12 flex flex-wrap items-center justify-center gap-8">
-        {filteredClubes.length > 0 ? (
-          filteredClubes.map((c, idx) => {
-            return (
-              <ClubCard
-                key={idx}
-                club={c.club}
-                city={c.city}
-                state={c.state}
-                maps_location={c.maps_location}
-                type={c.type}
-                phone={c.phone}
-                image={c.image}
-              />
-            );
-          })
+        {loading ? (
+          <Spinner />
+        ) : filteredClubes.length > 0 ? (
+          filteredClubes.map((c, idx) => (
+            <ClubCard
+              key={idx}
+              club={c.club}
+              city={c.city}
+              state={c.state}
+              maps_location={c.maps_location}
+              type={c.type}
+              phone={c.phone}
+              image={c.image}
+            />
+          ))
         ) : (
           <span>
-            Lo siento, no encontramos la combinacion de cancha y lugar que está
-            buscando
+            Lo siento, no encontramos la combinación de cancha y lugar que estás
+            buscando.
           </span>
         )}
       </div>
