@@ -39,14 +39,14 @@ export default function SumaTuCancha() {
     errors.address = "La dirección debe tener al menos 3 caracteres.";
 
   const touch = (field: string) =>
-    setTouched((prev) => ({ ...prev, [field]: true }));
+    setTouched(prev => ({ ...prev, [field]: true }));
 
   const isFormValid = Object.keys(errors).length === 0;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      setFormData((prev) => ({ ...prev, image: file }));
+      setFormData(prev => ({ ...prev, image: file }));
       setPreviewImage(URL.createObjectURL(file));
     }
   };
@@ -134,7 +134,7 @@ export default function SumaTuCancha() {
                 value={formData.club}
                 name="club"
                 onBlur={() => touch("club")}
-                onChange={(e) =>
+                onChange={e =>
                   setFormData({ ...formData, club: e.target.value })
                 }
               />
@@ -145,7 +145,7 @@ export default function SumaTuCancha() {
 
             <fieldset>
               <SelectProvince
-                handleProvince={(e) => {
+                handleProvince={e => {
                   setFormData({ ...formData, state: e.target.value, city: "" });
                 }}
                 onBlur={() => touch("state")}
@@ -156,7 +156,7 @@ export default function SumaTuCancha() {
             <fieldset>
               <SelectCity
                 selectedProvince={formData.state}
-                handleCity={(e) =>
+                handleCity={e =>
                   setFormData({ ...formData, city: e.target.value })
                 }
                 onBlur={() => touch("city")}
@@ -171,7 +171,7 @@ export default function SumaTuCancha() {
                 name="type"
                 className="w-full rounded-md"
                 required
-                onChange={(e) =>
+                onChange={e =>
                   setFormData({
                     ...formData,
                     type: e.target.value as TipoDeCancha,
@@ -212,7 +212,7 @@ export default function SumaTuCancha() {
                 value={formData.address}
                 name="address"
                 onBlur={() => touch("address")}
-                onChange={(e) =>
+                onChange={e =>
                   setFormData({ ...formData, address: e.target.value })
                 }
               />
@@ -232,7 +232,7 @@ export default function SumaTuCancha() {
                 value={formData.maps_location}
                 name="maps_location"
                 onBlur={() => touch("maps_location")}
-                onChange={(e) =>
+                onChange={e =>
                   setFormData({ ...formData, maps_location: e.target.value })
                 }
               />
@@ -255,7 +255,7 @@ export default function SumaTuCancha() {
                 value={formData.phone || ""}
                 name="phone"
                 onBlur={() => touch("phone")}
-                onChange={(e) => {
+                onChange={e => {
                   const digits = e.target.value.replace(/\D/g, "");
                   setFormData({ ...formData, phone: Number(digits) });
                 }}
@@ -349,7 +349,7 @@ export default function SumaTuCancha() {
                 type="file"
                 accept="image/*"
                 className="absolute inset-0 size-full cursor-pointer opacity-0"
-                onChange={(e) => handleImageChange(e)}
+                onChange={e => handleImageChange(e)}
               />
             </div>
 

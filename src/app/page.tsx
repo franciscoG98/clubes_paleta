@@ -15,10 +15,10 @@ export default function Home() {
 
   useEffect(() => {
     getCanchas()
-      .then((res) => {
+      .then(res => {
         setClubes(res);
       })
-      .catch((err) => console.log("Error:", err));
+      .catch(err => console.log("Error:", err));
   }, []);
 
   return (
@@ -75,7 +75,7 @@ export default function Home() {
 
         {clubes && clubes.length > 0 ? (
           <section className="flex flex-wrap items-center justify-center gap-8">
-            {clubes.map((cancha) => (
+            {clubes.map(cancha => (
               <ClubCard
                 key={cancha.id}
                 club={cancha.club}

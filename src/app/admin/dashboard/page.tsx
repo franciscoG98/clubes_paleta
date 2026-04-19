@@ -13,10 +13,10 @@ export default function ApprovedCanchasPage() {
 
   useEffect(() => {
     getCanchas()
-      .then((res) => {
+      .then(res => {
         setClubes(res);
       })
-      .catch((err) => console.log("Error:", err));
+      .catch(err => console.log("Error:", err));
   }, []);
 
   const handleDelete = async (id: number, clubName: string) => {
@@ -29,7 +29,7 @@ export default function ApprovedCanchasPage() {
 
     const res = await deleteCancha(id);
     if (res.ok) {
-      setClubes((prev) => prev.filter((c) => c.id !== id));
+      setClubes(prev => prev.filter(c => c.id !== id));
       toast.success("Cancha eliminada", {
         duration: 2000,
         progress: true,
@@ -61,8 +61,8 @@ export default function ApprovedCanchasPage() {
   const handleEditSave = async (id: number) => {
     const res = await updateCancha(id, editData);
     if (res.ok) {
-      setClubes((prev) =>
-        prev.map((c) => (c.id === id ? { ...c, ...editData } : c)),
+      setClubes(prev =>
+        prev.map(c => (c.id === id ? { ...c, ...editData } : c)),
       );
       toast.success("Cancha actualizada", {
         duration: 2000,
@@ -116,15 +116,15 @@ export default function ApprovedCanchasPage() {
           </thead>
 
           <tbody className="p-8">
-            {clubes.map((c) =>
+            {clubes.map(c =>
               editingId === c.id ? (
                 <tr key={c.id} className="bg-green-50">
                   <td className="border-collapse border-r-2 border-neutral-300 p-2">
                     <input
                       className="w-full rounded border p-1 text-sm"
                       value={editData.club ?? ""}
-                      onChange={(e) =>
-                        setEditData((prev) => ({
+                      onChange={e =>
+                        setEditData(prev => ({
                           ...prev,
                           club: e.target.value,
                         }))
@@ -135,8 +135,8 @@ export default function ApprovedCanchasPage() {
                     <input
                       className="w-full rounded border p-1 text-sm"
                       value={editData.state ?? ""}
-                      onChange={(e) =>
-                        setEditData((prev) => ({
+                      onChange={e =>
+                        setEditData(prev => ({
                           ...prev,
                           state: e.target.value,
                         }))
@@ -147,8 +147,8 @@ export default function ApprovedCanchasPage() {
                     <input
                       className="w-full rounded border p-1 text-sm"
                       value={editData.city ?? ""}
-                      onChange={(e) =>
-                        setEditData((prev) => ({
+                      onChange={e =>
+                        setEditData(prev => ({
                           ...prev,
                           city: e.target.value,
                         }))
@@ -159,8 +159,8 @@ export default function ApprovedCanchasPage() {
                     <select
                       className="w-full rounded border p-1 text-sm"
                       value={editData.type ?? ""}
-                      onChange={(e) =>
-                        setEditData((prev) => ({
+                      onChange={e =>
+                        setEditData(prev => ({
                           ...prev,
                           type: e.target.value as TipoDeCancha,
                         }))

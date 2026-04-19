@@ -38,12 +38,12 @@ export default function BuscarCanchas() {
   const handleTipoCanchaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
 
-    setTipoCanchaFilter((prev) =>
-      checked ? [...prev, value] : prev.filter((tipo) => tipo !== value),
+    setTipoCanchaFilter(prev =>
+      checked ? [...prev, value] : prev.filter(tipo => tipo !== value),
     );
   };
 
-  const filteredClubes = result.filter((club) => {
+  const filteredClubes = result.filter(club => {
     const provinciaMatches =
       provinciaFilter === "" || club.state === provinciaFilter;
     const tipoCanchaMatches =

@@ -9,9 +9,7 @@ export default async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  const isProtected = protectedRoutes.some((route) =>
-    pathname.startsWith(route),
-  );
+  const isProtected = protectedRoutes.some(route => pathname.startsWith(route));
 
   if (!isProtected) return NextResponse.next();
 
