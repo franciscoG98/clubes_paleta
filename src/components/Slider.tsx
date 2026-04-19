@@ -14,7 +14,7 @@ const images = [
   {
     src: "/banner/01_canchas_paleta-sardina-martiren.webp",
     id: 1,
-    alt: 'Gabriel "Sardina" Martirén',
+    alt: "Gabriel 'Sardina' Martirén",
   },
   {
     src: "/banner/02_canchas_paleta-vaca.webp",
@@ -78,7 +78,7 @@ export const Slider = () => {
         modules={[Pagination, Navigation]}
         className="flex w-full"
       >
-        {images.map((img) => (
+        {images.map(img => (
           <SwiperSlide
             key={img.id}
             className="flex h-[250px] items-center justify-center text-center"

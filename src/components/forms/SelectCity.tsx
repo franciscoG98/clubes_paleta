@@ -8,8 +8,7 @@ type Props = {
 };
 
 const SelectCity = ({ selectedProvince, handleCity, onBlur, error }: Props) => {
-  const cities =
-    locations.find((p) => p.name === selectedProvince)?.cities || [];
+  const cities = locations.find(p => p.name === selectedProvince)?.cities || [];
 
   return (
     <div>
@@ -23,7 +22,7 @@ const SelectCity = ({ selectedProvince, handleCity, onBlur, error }: Props) => {
         disabled={!selectedProvince}
       >
         <option value="">Selecciona una ciudad</option>
-        {cities.map((city) => (
+        {cities.map(city => (
           <option key={city} value={city}>
             {city}
           </option>

@@ -55,7 +55,7 @@ const Navbar = () => {
         Canchas de Paleta
       </Link>
       <div className="mt-4">
-        {paths.map((item) => (
+        {paths.map(item => (
           <Link
             href={item.href}
             key={item.title}

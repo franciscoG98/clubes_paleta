@@ -18,7 +18,7 @@ const SelectProvince = ({ handleProvince, onBlur, error }: Props) => {
         onBlur={onBlur}
       >
         <option value="">Selecciona una provincia</option>
-        {locations.map((province) => (
+        {locations.map(province => (
           <option key={province.id} value={province.name}>
             {province.name}
           </option>

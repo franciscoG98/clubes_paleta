@@ -16,10 +16,10 @@ export default function PendingCanchasPage() {
 
   useEffect(() => {
     getPendingCanchas()
-      .then((res) => {
+      .then(res => {
         setCanchasToReview(res.filter((cancha: Cancha) => cancha.pending));
       })
-      .catch((err) => console.log("Error:", err));
+      .catch(err => console.log("Error:", err));
   }, []);
 
   async function handleApprove(id: number) {
@@ -39,7 +39,7 @@ export default function PendingCanchasPage() {
     }
 
     setCanchasToReview(
-      canchasToReview.filter((canchaToReview) => canchaToReview.id !== id),
+      canchasToReview.filter(canchaToReview => canchaToReview.id !== id),
     );
   }
 
@@ -58,7 +58,7 @@ export default function PendingCanchasPage() {
     }
 
     setCanchasToReview(
-      canchasToReview.filter((canchaToReview) => canchaToReview.id !== id),
+      canchasToReview.filter(canchaToReview => canchaToReview.id !== id),
     );
   }
 
@@ -68,7 +68,7 @@ export default function PendingCanchasPage() {
 
       <section className="m-12 flex flex-wrap justify-center gap-12">
         {canchasToReview.length > 0
-          ? canchasToReview.map((canchaToReview) => (
+          ? canchasToReview.map(canchaToReview => (
               <article
                 className="relative flex flex-col justify-between rounded-xl border border-slate-400 bg-white"
                 key={canchaToReview.id}
