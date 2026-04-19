@@ -5,6 +5,10 @@ import AdminNavbar from "@/components/AdminNavbar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -60,7 +64,7 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="es">
+    <html lang="es" className={cn("font-sans", geist.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
