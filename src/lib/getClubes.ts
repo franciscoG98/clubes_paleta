@@ -39,7 +39,7 @@ export const createPendingCancha = async (formData: Cancha) => {
     data.append("state", formData.state);
     data.append("type", formData.type);
     data.append("maps_location", formData.maps_location);
-    data.append("phone", formData.phone as unknown as string);
+    data.append("phone", formData.phone);
     data.append("address", formData.address);
 
     // Only append image if it exists and is a File object

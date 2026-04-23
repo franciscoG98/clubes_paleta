@@ -26,7 +26,7 @@ export default function SumaTuCancha() {
     state: "",
     type: "Trinquete" as TipoDeCancha,
     maps_location: "",
-    phone: 0,
+    phone: "",
     image: null as File | null | string,
     address: "",
   };
@@ -42,7 +42,7 @@ export default function SumaTuCancha() {
   if (!formData.city) errors.city = "Seleccioná una ciudad.";
   if (!formData.maps_location.trim())
     errors.maps_location = "La dirección es obligatoria.";
-  if (!formData.phone || String(formData.phone).replace(/\D/g, "").length < 8)
+  if (!formData.phone || formData.phone.replace(/\D/g, "").length < 8)
     errors.phone = "Ingresá un teléfono válido (mínimo 8 dígitos).";
   if (!formData.address.trim() || formData.address.trim().length < 3)
     errors.address = "La dirección debe tener al menos 3 caracteres.";
@@ -270,7 +270,7 @@ export default function SumaTuCancha() {
                 onBlur={() => touch("phone")}
                 onChange={e => {
                   const digits = e.target.value.replace(/\D/g, "");
-                  setFormData({ ...formData, phone: Number(digits) });
+                  setFormData({ ...formData, phone: digits });
                 }}
               />
               {touched.phone && errors.phone && (
