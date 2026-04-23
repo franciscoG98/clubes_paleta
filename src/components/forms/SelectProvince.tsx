@@ -1,30 +1,42 @@
 import { locations } from "../../app/data/locations";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
-  handleProvince: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onBlur?: () => void;
+  onValueChange: (value: string | null) => void;
+  value?: string;
   error?: string;
 };
 
-const SelectProvince = ({ handleProvince, onBlur, error }: Props) => {
+const SelectProvince = ({ onValueChange, value, error }: Props) => {
   return (
-    <div>
-      <label className="block font-semibold">
-        Provincia <span className="text-red-500">*</span>
-      </label>
-      <select
-        className={`w-full rounded-md border p-2 ${error ? "border-red-500 focus:ring-red-300" : ""}`}
-        onChange={handleProvince}
-        onBlur={onBlur}
-      >
-        <option value="">Selecciona una provincia</option>
-        {locations.map(province => (
-          <option key={province.id} value={province.name}>
-            {province.name}
-          </option>
-        ))}
-      </select>
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+    <div className="flex flex-col gap-1.5">
+      <Label htmlFor="province-select">
+        Provincia <span className="text-destructive">*</span>
+      </Label>
+      <Select value={value} onValueChange={onValueChange}>
+        <SelectTrigger
+          id="province-select"
+          className={`w-full ${error ? "ring-destructive/20 border-destructive" : ""}`}
+          aria-invalid={!!error}
+        >
+          <SelectValue placeholder="Seleccioná una provincia" />
+        </SelectTrigger>
+        <SelectContent>
+          {locations.map(province => (
+            <SelectItem key={province.id} value={province.name}>
+              {province.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   );
 };

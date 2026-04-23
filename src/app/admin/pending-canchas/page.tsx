@@ -10,6 +10,8 @@ import {
 import { Cancha } from "@/types/club";
 import { toast } from "nextjs-toast-notify";
 import ClubCard from "@/components/ClubCard";
+import { Button } from "@/components/ui/button";
+import { CheckIcon, XIcon } from "lucide-react";
 
 export default function PendingCanchasPage() {
   const [canchasToReview, setCanchasToReview] = useState<Cancha[]>([]);
@@ -23,12 +25,11 @@ export default function PendingCanchasPage() {
   }, []);
 
   async function handleApprove(id: number) {
-    // TODO: is necessary toogle pending cancha?
     const res = await togglePendingCancha(id, false);
     const res2 = await approveCancha(id);
 
     if (res?.ok && res2?.ok) {
-      toast.success("Cancha Aprobada exitosamente!", {
+      toast.success("Cancha aprobada exitosamente!", {
         duration: 2500,
         progress: true,
         position: "top-center",
@@ -38,16 +39,14 @@ export default function PendingCanchasPage() {
       });
     }
 
-    setCanchasToReview(
-      canchasToReview.filter(canchaToReview => canchaToReview.id !== id),
-    );
+    setCanchasToReview(prev => prev.filter(c => c.id !== id));
   }
 
   async function handleReject(id: number) {
     const res = await rejectCancha(id);
 
     if (res?.ok) {
-      toast.success("Cancha Rechazada exitosamente!", {
+      toast.success("Cancha rechazada exitosamente!", {
         duration: 2500,
         progress: true,
         position: "top-center",
@@ -57,50 +56,50 @@ export default function PendingCanchasPage() {
       });
     }
 
-    setCanchasToReview(
-      canchasToReview.filter(canchaToReview => canchaToReview.id !== id),
-    );
+    setCanchasToReview(prev => prev.filter(c => c.id !== id));
   }
 
   return (
-    <main className="mx-auto flex flex-col items-center justify-center gap-6">
-      <h1 className="text-3xl font-bold">Canchas pendientes de Revisión</h1>
+    <main className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-8">
+      <h1 className="text-2xl font-bold">Canchas pendientes de revisión</h1>
 
-      <section className="m-12 flex flex-wrap justify-center gap-12">
-        {canchasToReview.length > 0
-          ? canchasToReview.map(canchaToReview => (
-              <article
-                className="relative flex flex-col justify-between rounded-xl border border-slate-400 bg-white"
-                key={canchaToReview.id}
-              >
-                <ClubCard
-                  club={canchaToReview.club}
-                  city={canchaToReview.city}
-                  state={canchaToReview.state}
-                  maps_location={canchaToReview.maps_location}
-                  type={canchaToReview.type}
-                  address={canchaToReview.address}
-                  phone={canchaToReview.phone}
-                  image={canchaToReview.image}
-                />
-
-                <button
-                  className="absolute bottom-0 left-0 w-1/2 rounded-bl-md bg-red-500 p-2 font-semibold text-white"
-                  onClick={() => handleReject(canchaToReview.id as number)}
+      {canchasToReview.length === 0 ? (
+        <p className="text-muted-foreground">
+          No hay canchas pendientes de aprobación.
+        </p>
+      ) : (
+        <section className="flex flex-wrap justify-center gap-8">
+          {canchasToReview.map(cancha => (
+            <div key={cancha.id} className="flex flex-col gap-3">
+              <ClubCard
+                club={cancha.club}
+                city={cancha.city}
+                state={cancha.state}
+                maps_location={cancha.maps_location}
+                type={cancha.type}
+                address={cancha.address}
+                phone={cancha.phone}
+                image={cancha.image}
+              />
+              <div className="flex gap-2">
+                <Button
+                  variant="destructive"
+                  className="flex-1 gap-1"
+                  onClick={() => handleReject(cancha.id as number)}
                 >
-                  ❌ Rechazar
-                </button>
-
-                <button
-                  className="absolute bottom-0 right-0 w-1/2 rounded-br-md bg-blue-500 p-2 font-semibold text-white"
-                  onClick={() => handleApprove(canchaToReview.id as number)}
+                  <XIcon className="size-4" /> Rechazar
+                </Button>
+                <Button
+                  className="flex-1 gap-1"
+                  onClick={() => handleApprove(cancha.id as number)}
                 >
-                  ✅ Aprobar
-                </button>
-              </article>
-            ))
-          : "No hay canchas para aprobar"}
-      </section>
+                  <CheckIcon className="size-4" /> Aprobar
+                </Button>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
     </main>
   );
 }

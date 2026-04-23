@@ -1,34 +1,54 @@
 import { locations } from "../../app/data/locations";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
   selectedProvince: string;
-  handleCity: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onBlur?: () => void;
+  onValueChange: (value: string | null) => void;
+  value?: string;
   error?: string;
 };
 
-const SelectCity = ({ selectedProvince, handleCity, onBlur, error }: Props) => {
+const SelectCity = ({
+  selectedProvince,
+  onValueChange,
+  value,
+  error,
+}: Props) => {
   const cities = locations.find(p => p.name === selectedProvince)?.cities || [];
 
   return (
-    <div>
-      <label className="block font-semibold">
-        Ciudad <span className="text-red-500">*</span>
-      </label>
-      <select
-        className={`w-full rounded-md border p-2 ${error ? "border-red-500 focus:ring-red-300" : ""}`}
-        onChange={handleCity}
-        onBlur={onBlur}
+    <div className="flex flex-col gap-1.5">
+      <Label htmlFor="city-select">
+        Ciudad <span className="text-destructive">*</span>
+      </Label>
+      <Select
+        value={value}
+        onValueChange={onValueChange}
         disabled={!selectedProvince}
       >
-        <option value="">Selecciona una ciudad</option>
-        {cities.map(city => (
-          <option key={city} value={city}>
-            {city}
-          </option>
-        ))}
-      </select>
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+        <SelectTrigger
+          id="city-select"
+          className={`w-full ${error ? "ring-destructive/20 border-destructive" : ""}`}
+          aria-invalid={!!error}
+        >
+          <SelectValue placeholder="Seleccioná una ciudad" />
+        </SelectTrigger>
+        <SelectContent>
+          {cities.map(city => (
+            <SelectItem key={city} value={city}>
+              {city}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   );
 };

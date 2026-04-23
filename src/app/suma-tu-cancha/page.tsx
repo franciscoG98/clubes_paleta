@@ -8,6 +8,16 @@ import Image from "next/image";
 import { Cancha, TipoDeCancha } from "@/types/club";
 import { MapPin, Phone, Upload } from "lucide-react";
 import { toast } from "nextjs-toast-notify";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function SumaTuCancha() {
   const initialFormData = {
@@ -30,9 +40,8 @@ export default function SumaTuCancha() {
   if (!formData.club.trim()) errors.club = "El nombre del club es obligatorio.";
   if (!formData.state) errors.state = "Seleccioná una provincia.";
   if (!formData.city) errors.city = "Seleccioná una ciudad.";
-  if (!formData.maps_location.trim()) {
+  if (!formData.maps_location.trim())
     errors.maps_location = "La dirección es obligatoria.";
-  }
   if (!formData.phone || String(formData.phone).replace(/\D/g, "").length < 8)
     errors.phone = "Ingresá un teléfono válido (mínimo 8 dígitos).";
   if (!formData.address.trim() || formData.address.trim().length < 3)
@@ -98,162 +107,166 @@ export default function SumaTuCancha() {
   }
 
   return (
-    <main className="mx-12 flex flex-col justify-center pb-12 md:mx-auto md:w-1/2">
-      <div className="mb-10 text-center">
+    <main className="mx-auto w-full max-w-2xl px-4 pb-12">
+      <div className="mb-10 pt-8 text-center">
         <h1 className="mb-3 bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-3xl font-bold text-transparent">
           Sumá tu cancha y hacela visible para todos
         </h1>
-        <p className="mx-auto max-w-2xl">
+        <p className="mx-auto max-w-2xl text-muted-foreground">
           Registrá tu cancha para que más personas puedan encontrarla. Aumentá
           la visibilidad de tu espacio deportivo y conectate con nuevos
           jugadores.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {/* Datos básicos */}
-        <article className="m-4 w-full rounded-xl border-2 p-4">
-          <header className="flex flex-col gap-2">
-            <h3 className="flex items-center gap-2 text-xl font-semibold">
-              <MapPin className="size-5 text-green-500" />
+        <article className="rounded-xl border p-6">
+          <header className="mb-4 flex flex-col gap-1">
+            <h3 className="flex items-center gap-2 text-lg font-semibold">
+              <MapPin className="size-5 text-primary" />
               Datos básicos de la cancha
             </h3>
-            <p className="text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Información principal para identificar tu cancha
             </p>
           </header>
-          <section className="space-y-4">
-            <fieldset>
-              <label className="font-semibold">
-                Nombre del Club <span className="text-red-500">*</span>
-              </label>
-              <input
+
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="club-name">
+                Nombre del Club <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="club-name"
                 type="text"
-                className={`w-full rounded-md ${touched.club && errors.club ? "border-red-500 focus:ring-red-300" : ""}`}
                 placeholder="Club"
                 value={formData.club}
                 name="club"
+                aria-invalid={!!(touched.club && errors.club)}
                 onBlur={() => touch("club")}
                 onChange={e =>
                   setFormData({ ...formData, club: e.target.value })
                 }
               />
               {touched.club && errors.club && (
-                <p className="mt-1 text-sm text-red-500">{errors.club}</p>
+                <p className="text-sm text-destructive">{errors.club}</p>
               )}
-            </fieldset>
+            </div>
 
-            <fieldset>
-              <SelectProvince
-                handleProvince={e => {
-                  setFormData({ ...formData, state: e.target.value, city: "" });
-                }}
-                onBlur={() => touch("state")}
-                error={touched.state ? errors.state : undefined}
-              />
-            </fieldset>
+            <SelectProvince
+              onValueChange={value => {
+                setFormData({ ...formData, state: value ?? "", city: "" });
+                touch("state");
+              }}
+              value={formData.state}
+              error={touched.state ? errors.state : undefined}
+            />
 
-            <fieldset>
-              <SelectCity
-                selectedProvince={formData.state}
-                handleCity={e =>
-                  setFormData({ ...formData, city: e.target.value })
-                }
-                onBlur={() => touch("city")}
-                error={touched.city ? errors.city : undefined}
-              />
-            </fieldset>
+            <SelectCity
+              selectedProvince={formData.state}
+              onValueChange={value => {
+                setFormData({ ...formData, city: value ?? "" });
+                touch("city");
+              }}
+              value={formData.city}
+              error={touched.city ? errors.city : undefined}
+            />
 
-            <fieldset>
-              <label className="font-semibold">Tipo de cancha</label>
-              <select
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="tipo-cancha">Tipo de cancha</Label>
+              <Select
                 value={formData.type}
-                name="type"
-                className="w-full rounded-md"
-                required
-                onChange={e =>
+                onValueChange={value =>
                   setFormData({
                     ...formData,
-                    type: e.target.value as TipoDeCancha,
+                    type: (value ?? "Trinquete") as TipoDeCancha,
                   })
                 }
               >
-                {/* <option value="" disabled>
-                  --Tipo de cancha--
-                </option> */}
-                <option value="Trinquete">Trinquete</option>
-                <option value="Frontón">Frontón</option>
-                <option value="Cajón">Cajón</option>
-              </select>
-            </fieldset>
-          </section>
+                <SelectTrigger id="tipo-cancha" className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Trinquete">Trinquete</SelectItem>
+                  <SelectItem value="Frontón">Frontón</SelectItem>
+                  <SelectItem value="Cajón">Cajón</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </article>
 
-        <article className="m-4 w-full rounded-xl border-2 p-4">
-          <header className="flex flex-col gap-2">
-            <h3 className="flex items-center gap-2 text-xl font-semibold">
-              <Phone className="size-5 text-green-500" />
+        {/* Información de contacto */}
+        <article className="rounded-xl border p-6">
+          <header className="mb-4 flex flex-col gap-1">
+            <h3 className="flex items-center gap-2 text-lg font-semibold">
+              <Phone className="size-5 text-primary" />
               Información de contacto
             </h3>
-            <p className="text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Datos para que los usuarios puedan comunicarse
             </p>
           </header>
 
-          <section className="space-y-4">
-            <fieldset>
-              <label className="font-semibold">
-                Dirección <span className="text-red-500">*</span>
-              </label>
-              <input
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="address">
+                Dirección <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="address"
                 type="text"
-                className={`w-full rounded-md ${touched.address && errors.address ? "border-red-500 focus:ring-red-300" : ""}`}
                 placeholder="Ej: Mitre 123"
                 value={formData.address}
                 name="address"
+                aria-invalid={!!(touched.address && errors.address)}
                 onBlur={() => touch("address")}
                 onChange={e =>
                   setFormData({ ...formData, address: e.target.value })
                 }
               />
               {touched.address && errors.address && (
-                <p className="mt-1 text-sm text-red-500">{errors.address}</p>
+                <p className="text-sm text-destructive">{errors.address}</p>
               )}
-            </fieldset>
+            </div>
 
-            <fieldset>
-              <label className="font-semibold">
-                Ubicación en Google Maps <span className="text-red-500">*</span>
-              </label>
-              <input
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="maps-location">
+                Ubicación en Google Maps{" "}
+                <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="maps-location"
                 type="text"
-                className={`w-full rounded-md ${touched.maps_location && errors.maps_location ? "border-red-500 focus:ring-red-300" : ""}`}
                 placeholder="Ej: https://maps.google.com/..."
                 value={formData.maps_location}
                 name="maps_location"
+                aria-invalid={!!(touched.maps_location && errors.maps_location)}
                 onBlur={() => touch("maps_location")}
                 onChange={e =>
                   setFormData({ ...formData, maps_location: e.target.value })
                 }
               />
               {touched.maps_location && errors.maps_location && (
-                <p className="mt-1 text-sm text-red-500">
+                <p className="text-sm text-destructive">
                   {errors.maps_location}
                 </p>
               )}
-            </fieldset>
+            </div>
 
-            <fieldset>
-              <label className="font-semibold">
-                Teléfono <span className="text-red-500">*</span>
-              </label>
-              <input
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="phone">
+                Teléfono <span className="text-destructive">*</span>
+              </Label>
+              <Input
+                id="phone"
                 type="tel"
                 inputMode="numeric"
-                className={`w-full rounded-md ${touched.phone && errors.phone ? "border-red-500 focus:ring-red-300" : ""}`}
                 placeholder="Ej: 2944112233"
                 value={formData.phone || ""}
                 name="phone"
+                aria-invalid={!!(touched.phone && errors.phone)}
                 onBlur={() => touch("phone")}
                 onChange={e => {
                   const digits = e.target.value.replace(/\D/g, "");
@@ -261,124 +274,61 @@ export default function SumaTuCancha() {
                 }}
               />
               {touched.phone && errors.phone && (
-                <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+                <p className="text-sm text-destructive">{errors.phone}</p>
               )}
-            </fieldset>
-
-            {/* TODO create this fields in models, check which is required at least one or phone or social media */}
-            {/* <fieldset>
-              <label className="font-semibold">Instagram</label>
-              <input
-                type="text"
-                className="w-full rounded-md"
-                placeholder="Usuario de Instagram"
-              />
-            </fieldset>
-
-            <fieldset>
-              <label className="font-semibold">Facebook</label>
-              <input
-                type="text"
-                className="w-full rounded-md"
-                placeholder="Link de cuenta de Facebook"
-              />
-            </fieldset>
-
-            <fieldset>
-              <label className="font-semibold">Página Web</label>
-              <input
-                type="text"
-                className="w-full rounded-md"
-                placeholder="Página Web del Club"
-              />
-            </fieldset> */}
-          </section>
+            </div>
+          </div>
         </article>
 
-        {/* TODO Detalles adicionales */}
-        {/* <article className="m-4 w-full rounded-xl border-2 p-4">
-          <header className="flex flex-col gap-2">
-            <h3 className="flex items-center gap-2 text-xl font-semibold">
-              <Clock className="size-5 text-green-500" />
-              Detalles adicionales (Opcional)
-            </h3>
-            <p>Información complementaria sobre tu cancha</p>
-          </header>
-          <section className="space-y-6">
-            <h4 className="mb-3 text-sm font-medium text-neutral-500">
-              Servicios disponibles
-            </h4>
-            <fieldset className="flex flex-col gap-2 lg:grid lg:grid-cols-2">
-              {services.map((service) => (
-                <label key={service.id} className="flex items-start gap-2">
-                  <input
-                    className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
-                    type="checkbox"
-                  />
-                  {service.label}
-                </label>
-              ))}
-            </fieldset>
-
-            <fieldset className="flex flex-col">
-              <label>Horarios de funcionamiento</label>
-              <span className="text-sm font-medium text-neutral-500">
-                A qué hora la gente suele ir a jugar
-              </span>
-              <textarea
-                rows={4}
-                placeholder="Ej: Lunes a Viernes: 8:00 - 22:00, Sábados y Domingos: 9:00 - 20:00"
-              />
-            </fieldset>
-          </section>
-        </article> */}
-
-        {/* Subir imágenes */}
-        <article className="m-4 w-full rounded-xl border-2 p-4">
-          <header>
-            <h3 className="my-2 flex items-center gap-2 text-xl font-semibold">
-              <Upload className="size-5 text-green-500" />
+        {/* Foto */}
+        <article className="rounded-xl border p-6">
+          <header className="mb-4">
+            <h3 className="flex items-center gap-2 text-lg font-semibold">
+              <Upload className="size-5 text-primary" />
               Foto de la cancha
             </h3>
           </header>
-          <div className="mt-8 flex justify-around">
-            <div className="relative flex size-72 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center transition-colors hover:bg-gray-50">
-              <Upload className="mb-2 size-8 text-gray-400" />
-              <button type="button">Seleccionar archivos</button>
+
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-around">
+            <label className="relative flex h-48 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border text-center transition-colors hover:bg-muted sm:w-64">
+              <Upload className="mb-2 size-8 text-muted-foreground" />
+              <span className="text-sm font-medium">Seleccionar archivo</span>
+              <span className="mt-1 text-xs text-muted-foreground">
+                PNG, JPG, WEBP
+              </span>
               <input
                 type="file"
                 accept="image/*"
                 className="absolute inset-0 size-full cursor-pointer opacity-0"
-                onChange={e => handleImageChange(e)}
+                onChange={handleImageChange}
               />
-            </div>
+            </label>
 
             {previewImage && (
-              <div className="flex flex-col">
-                <div className="group relative aspect-square w-72">
+              <div className="flex flex-col items-center gap-2">
+                <div className="relative size-48 sm:size-64">
                   <Image
                     src={previewImage}
                     alt="Vista previa de cancha a subir"
                     fill
-                    className="rounded-2xl object-cover"
+                    className="rounded-xl object-cover"
                   />
                 </div>
-                <h4 className="my-3 text-center text-sm font-medium">
-                  Vista previa de cancha a subir
-                </h4>
+                <p className="text-xs text-muted-foreground">Vista previa</p>
               </div>
             )}
           </div>
         </article>
 
-        <div className="flex justify-center pt-4">
-          <button
+        <div className="flex justify-center pt-2">
+          <Button
             type="submit"
-            className="rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 px-8 py-4 text-xl font-semibold text-white hover:from-green-700 hover:to-emerald-600 disabled:cursor-not-allowed disabled:opacity-60"
+            size="lg"
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-500 px-8 text-base font-semibold text-white hover:from-green-700 hover:to-emerald-600 sm:w-auto"
             disabled={loading}
           >
             {loading ? "Registrando..." : "Registrar cancha"}
-          </button>
+          </Button>
         </div>
       </form>
     </main>

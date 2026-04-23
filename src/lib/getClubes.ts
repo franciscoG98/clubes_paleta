@@ -137,20 +137,21 @@ export const deleteCancha = async (id: number) => {
   }
 };
 
-export const updateCancha = async (id: number, data: Partial<Cancha>) => {
+export const updateCancha = async (
+  id: number,
+  data: Partial<Cancha>,
+): Promise<Response> => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URI}/canchas/${id}`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      },
-    );
-
-    return res;
+    return await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/canchas/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
   } catch (error) {
     console.error("Error en el servidor:", error);
-    return { ok: false };
+    return Response.json(
+      { errors: [{ msg: "No se pudo contactar al servidor." }] },
+      { status: 503 },
+    );
   }
 };

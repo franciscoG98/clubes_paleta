@@ -2,11 +2,13 @@ import Image from "next/image";
 import { Cancha } from "@/types/club";
 import { House, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-
-// const getMapsUrl = (address: string, city: string, state: string) => {
-//   const query = encodeURIComponent(`${address}, ${city}, ${state}, Argentina`);
-//   return `https://www.google.com/maps/search/?api=1&query=${query}`;
-// };
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const ClubCard = ({
   club,
@@ -19,10 +21,10 @@ const ClubCard = ({
   address,
 }: Cancha) => {
   return (
-    <div className="h-[520px] w-[320px] overflow-hidden rounded-xl border border-slate-400">
-      <span className="absolute ml-2 mt-2 w-fit rounded-full bg-blue-600 px-2 py-1 font-semibold text-background">
+    <Card className="relative h-[440px] w-80 gap-0 overflow-hidden p-0">
+      <Badge className="absolute z-10 rounded-br-lg bg-blue-600 text-white hover:bg-blue-700">
         {type}
-      </span>
+      </Badge>
 
       <Image
         aria-hidden
@@ -34,51 +36,48 @@ const ClubCard = ({
             : `${process.env.NEXT_PUBLIC_SERVER_URI}/uploads/cancha_default.webp`
         }
         alt={`Cancha de ${club}, ${city}`}
-        className="h-[203px] w-full rounded-t-xl sm:h-[240px]"
+        className="h-fit w-full border-b object-cover"
         width={320}
-        height={203}
+        height={210}
         priority
       />
 
-      <header className="ml-4 mt-4 flex flex-col justify-around gap-2">
-        <h3 className="text-2xl font-bold">{club}</h3>
-
-        <p className="text-gray-500">
+      <CardHeader className="pb-1">
+        <h3 className="text-xl font-bold">{club}</h3>
+        <p className="text-sm text-muted-foreground">
           {city}, {state}
         </p>
-      </header>
+      </CardHeader>
 
-      <div className="m-4">
-        <p className="flex items-start gap-2 text-gray-600">
+      <CardContent className="flex flex-col gap-2">
+        <p className="flex items-start gap-2 text-sm text-muted-foreground">
           <House className="mt-0.5 size-4 shrink-0" />
           {address ?? "Dirección no disponible"}
         </p>
-      </div>
 
-      <div className="m-4">
         <Link
           href={maps_location}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-start gap-2 text-green-600 hover:underline"
+          className="flex items-center gap-2 text-sm text-primary hover:underline"
         >
-          <MapPin className="mt-0.5 size-4" />
-          <span>Ver direccion en Google Maps</span>
+          <MapPin className="size-4 shrink-0" />
+          Ver en Google Maps
         </Link>
-      </div>
+      </CardContent>
 
-      <div className="m-4">
-        {phone ? (
+      {phone ? (
+        <CardFooter className="border-none">
           <Link
-            className="flex gap-2 text-green-500 hover:underline"
             href={`tel:+549${phone}`}
+            className="flex items-center gap-2 text-sm text-green-600 hover:underline"
           >
-            <Phone className="mt-0.5 size-4" />
+            <Phone className="size-4 shrink-0" />
             {phone}
           </Link>
-        ) : null}
-      </div>
-    </div>
+        </CardFooter>
+      ) : null}
+    </Card>
   );
 };
 
