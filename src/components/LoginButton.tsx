@@ -1,15 +1,13 @@
 "use client";
 
 import { login } from "@/lib/actions/auth";
+import { Button } from "@/components/ui/button";
 
 const LoginButton = () => {
   return (
-    <button
-      className="rounded-md bg-gray-600 p-2 text-center font-semibold text-white"
-      onClick={() => login()}
-    >
+    <Button onClick={() => login()} variant="default">
       Entrar con Github
-    </button>
+    </Button>
   );
 };
 

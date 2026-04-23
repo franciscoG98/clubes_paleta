@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
   return (
@@ -54,7 +55,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/contribuir"
+                  href="/acerca-de"
                   className="text-gray-600 transition-colors hover:text-green-600 hover:underline"
                 >
                   Acerca de
@@ -134,9 +135,10 @@ const Footer = () => {
           </div> */}
         </div>
 
-        {/* TODO: queres poner publicidad??? */}
+        {/* @fix: TODO: queres poner publicidad??? */}
 
-        <div className="mt-8 border-t border-gray-200 pt-6 text-center text-sm text-gray-600">
+        <Separator className="mt-8" />
+        <div className="pt-6 text-center text-sm text-gray-600">
           <p>
             © {new Date().getFullYear()} Canchas de Paleta. Todos los derechos
             reservados.

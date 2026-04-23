@@ -5,6 +5,19 @@ import { getCanchas } from "@/lib/getClubes";
 import ClubCard from "@/components/ClubCard";
 import Spinner from "@/components/Spinner";
 import { Cancha } from "@/types/club";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const TIPOS_DE_CANCHA = ["Trinquete", "Frontón", "Cajón"] as const;
+type TipoDeCancha = (typeof TIPOS_DE_CANCHA)[number];
 
 export default function BuscarCanchas() {
   const [result, setResult] = useState<Cancha[]>([]);
@@ -18,7 +31,6 @@ export default function BuscarCanchas() {
     const fetchData = async () => {
       setLoading(true);
       const clubes = await getCanchas();
-
       setResult(clubes);
 
       const provincias = Array.from(
@@ -31,15 +43,9 @@ export default function BuscarCanchas() {
     fetchData();
   }, []);
 
-  const handleProvinciaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setProvinciaFilter(e.target.value);
-  };
-
-  const handleTipoCanchaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-
+  const handleTipoCanchaChange = (tipo: TipoDeCancha, checked: boolean) => {
     setTipoCanchaFilter(prev =>
-      checked ? [...prev, value] : prev.filter(tipo => tipo !== value),
+      checked ? [...prev, tipo] : prev.filter(t => t !== tipo),
     );
   };
 
@@ -48,7 +54,6 @@ export default function BuscarCanchas() {
       provinciaFilter === "" || club.state === provinciaFilter;
     const tipoCanchaMatches =
       tipoCanchaFilter.length === 0 || tipoCanchaFilter.includes(club.type);
-
     return provinciaMatches && tipoCanchaMatches;
   });
 
@@ -58,90 +63,77 @@ export default function BuscarCanchas() {
   };
 
   return (
-    <main className="row-start-2 mx-auto flex w-3/4 flex-col gap-8 sm:items-start">
-      {/* <h1 className="mx-auto mt-12 text-2xl font-bold">Busca tu Cancha</h1> */}
-
-      <div className="mx-auto my-8 text-center">
+    <main className="mx-auto w-full max-w-6xl px-4">
+      <div className="mx-auto mb-8 pt-8 text-center">
         <h1 className="mb-3 bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-3xl font-bold text-transparent">
           Busca tu Cancha
         </h1>
-        <p className="max-w-lg px-4">
+        <p className="mx-auto max-w-lg text-muted-foreground">
           Encontrá las mejores canchas de pelota a paleta en todo el país.
           Filtrá por provincia o tipo de cancha.
         </p>
       </div>
 
-      {/* Search and Filter Section */}
-      <div className="mx-auto mb-8 flex flex-col gap-4 rounded-lg bg-white px-12 py-6 shadow-md md:flex-row">
-        <div className="flex gap-3">
-          <label className="" htmlFor="provinciaFilter">
-            Provincia:
-            <select
-              className="w-full rounded-md border border-slate-400 bg-white p-2"
-              id="provinciaFilter"
+      {/* Filter bar */}
+      <div className="mb-8 rounded-lg border bg-card p-4 shadow-sm">
+        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
+          {/* Province filter */}
+          <div className="flex min-w-[180px] flex-col gap-1.5">
+            <Label htmlFor="provincia-select">Provincia</Label>
+            <Select
               value={provinciaFilter}
-              onChange={handleProvinciaChange}
+              onValueChange={value => setProvinciaFilter(value ?? "")}
             >
-              <option value="" hidden>
-                Seleccione una provincia
-              </option>
-              {provinciaOptions.map((provincia, index) => (
-                <option className="" key={index} value={provincia}>
-                  {provincia}
-                </option>
+              <SelectTrigger id="provincia-select" className="w-full">
+                <SelectValue placeholder="Todas las provincias" />
+              </SelectTrigger>
+              <SelectContent>
+                {provinciaOptions.map((provincia, index) => (
+                  <SelectItem key={index} value={provincia}>
+                    {provincia}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Type filters */}
+          <div className="flex flex-col gap-1.5">
+            <Label>Tipo de Cancha</Label>
+            <div className="flex flex-wrap gap-4 pt-1">
+              {TIPOS_DE_CANCHA.map(tipo => (
+                <div key={tipo} className="flex items-center gap-2">
+                  <Checkbox
+                    id={`tipo-${tipo}`}
+                    checked={tipoCanchaFilter.includes(tipo)}
+                    onCheckedChange={(checked: boolean) =>
+                      handleTipoCanchaChange(tipo, checked)
+                    }
+                  />
+                  <Label
+                    htmlFor={`tipo-${tipo}`}
+                    className="cursor-pointer font-normal"
+                  >
+                    {tipo}
+                  </Label>
+                </div>
               ))}
-            </select>
-          </label>
-
-          <label className="mb-2 block">
-            Tipo de Cancha:
-            <div className="mt-2 flex gap-2">
-              <label className="flex items-center gap-2">
-                <input
-                  className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
-                  type="checkbox"
-                  value="Trinquete"
-                  checked={tipoCanchaFilter.includes("Trinquete")}
-                  onChange={handleTipoCanchaChange}
-                />
-                Trinquete
-              </label>
-
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
-                  value="Frontón"
-                  checked={tipoCanchaFilter.includes("Frontón")}
-                  onChange={handleTipoCanchaChange}
-                />
-                Frontón
-              </label>
-
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  className="size-6 rounded-sm border border-slate-400 focus:ring-blue-300"
-                  value="Cajón"
-                  checked={tipoCanchaFilter.includes("Cajón")}
-                  onChange={handleTipoCanchaChange}
-                />
-                Cajón
-              </label>
             </div>
-          </label>
+          </div>
 
-          <button
-            className="mb-2 flex h-fit flex-wrap justify-center self-end whitespace-nowrap rounded-md border border-none bg-gray-900 px-4 py-2 font-semibold text-white hover:bg-gray-700"
+          {/* Reset */}
+          <Button
+            variant="outline"
             onClick={handleResetFilters}
+            className="sm:ml-auto"
           >
-            Borrar Filtros
-          </button>
+            Borrar filtros
+          </Button>
         </div>
       </div>
 
-      {/* Result Section */}
-      <div className="mb-12 flex flex-wrap items-center justify-center gap-8">
+      {/* Results */}
+      <div className="mb-12 flex flex-wrap items-start justify-center gap-6">
         {loading ? (
           <Spinner />
         ) : filteredClubes.length > 0 ? (
@@ -159,10 +151,9 @@ export default function BuscarCanchas() {
             />
           ))
         ) : (
-          <span>
-            Lo siento, no encontramos la combinación de cancha y lugar que estás
-            buscando.
-          </span>
+          <p className="py-12 text-center text-muted-foreground">
+            Lo sentimos, no encontramos canchas con los filtros seleccionados.
+          </p>
         )}
       </div>
     </main>

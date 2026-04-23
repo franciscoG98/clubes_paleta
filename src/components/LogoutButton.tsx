@@ -1,15 +1,13 @@
 "use client";
 
 import { logout } from "@/lib/actions/auth";
+import { Button } from "@/components/ui/button";
 
 const LogoutButton = () => {
   return (
-    <button
-      className="rounded-md bg-gray-600 p-2 text-center font-semibold text-white"
-      onClick={() => logout()}
-    >
-      Logout
-    </button>
+    <Button onClick={() => logout()} variant="outline">
+      Cerrar sesión
+    </Button>
   );
 };
 

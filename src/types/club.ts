@@ -14,7 +14,7 @@ export type Cancha = {
   pending?: boolean;
   maps_location: string;
   type: TipoDeCancha;
-  phone: number;
+  phone: string;
   image: string | File | null;
   address: string;
 };
